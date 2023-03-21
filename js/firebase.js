@@ -1,8 +1,8 @@
-
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-analytics.js";
-  import { collection, getFirestore, addDoc } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-firestore.js"
+  import { collection, getFirestore, addDoc } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-firestore.js";
+  import { getStorage, ref, uploadBytes } from "firebase/storage";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -24,8 +24,19 @@
 
   const db= getFirestore();
 
+  export const storage = getStorage(app);
+
+  
+
 
   export const saveTask = (title, description) =>{
     addDoc(collection(db, "post"),{titulo: title,
          descripcion: description})
   }
+
+  export function uploadFile(file){
+    const storageRef = ref(storage, "someChild");
+    uploadBytes(storageRef, file).then(snapshot => {
+        console.log(snapshot)
+    })
+}

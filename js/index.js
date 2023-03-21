@@ -1,4 +1,4 @@
-import { saveTask } from "./firebase.js";
+import { saveTask, uploadFile } from "./firebase.js";
 
 
 window.addEventListener("DOMContentLoaded",()=>{
@@ -14,6 +14,6 @@ taskForm.addEventListener("submit",(e)=>{
     const description=taskForm["task-description"]
 
     
-
     saveTask(title.value,description.value);
+    uploadFile(taskForm["fileInput"].files[0]);
 })
