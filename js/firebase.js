@@ -29,12 +29,12 @@
   
 
 
-  export const saveTask = (title, description) =>{
+  export const guardarVenta = (title, description) =>{
     addDoc(collection(db, "post"),{titulo: title,
          descripcion: description})
   }
 
-  export function uploadFile(file){ //error
+  export function subirArchivo(file){ //error
     const storageRef = ref(storage, "someChild");
     uploadBytes(storageRef, file).then(snapshot => {
         console.log(snapshot)
