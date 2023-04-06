@@ -13,9 +13,6 @@ taskForm.addEventListener("submit",(e)=>{
     const title=taskForm["task-title"]
     const description=taskForm["task-description"]
 
-    
-    saveTask(title.value,description.value);
     uploadFile(taskForm["fileInput"].files[0]);
-
-    taskForm.reset();
+    saveTask(title.value,description.value);
 })
