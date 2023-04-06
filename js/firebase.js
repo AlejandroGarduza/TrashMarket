@@ -3,6 +3,7 @@
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-analytics.js";
   import { collection, getFirestore, addDoc } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-firestore.js";
   import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-storage.js";
+  import {v4} from "https://jspm.dev/uuid";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -35,8 +36,10 @@
   }
 
   export function uploadFile(file){
-    const storageRef = ref(storage, "someChild");
+    const storageRef = ref(storage, "post/" + v4());
     uploadBytes(storageRef, file).then(snapshot => {
-        console.log(snapshot)
+        console.log(snapshot);
+        
     })
+    
 }

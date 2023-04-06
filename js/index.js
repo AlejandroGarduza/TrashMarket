@@ -16,4 +16,6 @@ taskForm.addEventListener("submit",(e)=>{
     
     saveTask(title.value,description.value);
     uploadFile(taskForm["fileInput"].files[0]);
+
+    taskForm.reset();
 })
