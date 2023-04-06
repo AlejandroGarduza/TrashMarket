@@ -30,20 +30,29 @@
   
 
 
-  export const saveTask = (title, description) =>{
-    addDoc(collection(db, "post"),{titulo: title,
-         descripcion: description})
+  export const saveTask = (title, description, url) =>{
+    addDoc(collection(db, "post"),{
+      titulo: title,
+      descripcion: description,
+      url : url
+    })
   }
 
+  
+
+
   export function uploadFile(file){
+    var link;
     const storageRef = ref(storage, "post/" + v4());
     uploadBytes(storageRef, file).then(snapshot => {
+      
         console.log(snapshot);
         getDownloadURL(snapshot.ref).then(url => {
-          var link = url;
+          link = ""+url;
           console.log(link);
+          return link;          
         })
-        
-    })
-    
+      })
+      console.log(link);
+      return link;
 }
