@@ -2,7 +2,8 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-analytics.js";
   import { collection, getFirestore, addDoc } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-firestore.js";
-  import { storage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-storage.js"; //error
+  import { getStorage, ref, uploadBytes, getDownloadURL} from "https://www.gstatic.com/firebasejs/9.6.2/firebase-storage.js";
+  import {v4} from "https://jspm.dev/uuid";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -29,14 +30,29 @@
   
 
 
-  export const guardarVenta = (title, description) =>{
-    addDoc(collection(db, "post"),{titulo: title,
-         descripcion: description})
+  export const saveTask = (title, description, url) =>{
+    addDoc(collection(db, "post"),{
+      titulo: title,
+      descripcion: description,
+      url : url
+    })
   }
 
-  export function subirArchivo(file){ //error
-    const storageRef = ref(storage, "someChild");
+  
+
+
+  export function uploadFile(file){
+    var link;
+    const storageRef = ref(storage, "post/" + v4());
     uploadBytes(storageRef, file).then(snapshot => {
-        console.log(snapshot)
-    })
+      
+        console.log(snapshot);
+        getDownloadURL(snapshot.ref).then(url => {
+          link = ""+url;
+          console.log(link);
+          return link;          
+        })
+      })
+      console.log(link);
+      return link;
 }
