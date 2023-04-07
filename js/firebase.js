@@ -25,34 +25,31 @@
 
   const db= getFirestore();
 
-  export const storage = getStorage(app); //error
+  export const storage = getStorage(app); 
 
   
 
 
-  export const saveTask = (title, description, url) =>{
+  export const guardarPost = (title, description, url) =>{
     addDoc(collection(db, "post"),{
       titulo: title,
       descripcion: description,
       url : url
-    })
+    }).then(()=>{
+      alert("Post guardado");
+    });
   }
 
   
 
 
-  export function uploadFile(file){
-    var link;
-    const storageRef = ref(storage, "post/" + v4());
-    uploadBytes(storageRef, file).then(snapshot => {
-      
-        console.log(snapshot);
-        getDownloadURL(snapshot.ref).then(url => {
-          link = ""+url;
-          console.log(link);
-          return link;          
-        })
-      })
-      console.log(link);
-      return link;
-}
+  export function subirArchivo(file) {
+  const storageRef = ref(storage, "post/" + v4());
+  return uploadBytes(storageRef, file)
+    .then(snapshot => {
+      return getDownloadURL(snapshot.ref);
+    })
+    .then(url => {
+      return url;
+    });
+  }

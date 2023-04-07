@@ -1,24 +1,17 @@
-import { guardarVenta, subirArchivo } from "./firebase.js";
+import { guardarPost, subirArchivo } from "./firebase.js";
 
+window.addEventListener("DOMContentLoaded", () => {});
 
-window.addEventListener("DOMContentLoaded",()=>{
-    
-})
+const taskForm = document.getElementById("task-form");
 
-const taskForm=document.getElementById("task-form");
+taskForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-taskForm.addEventListener("submit",(e)=>{
-    e.preventDefault();
+  const title = taskForm["task-title"];
+  const description = taskForm["task-description"];
 
-    const title=taskForm["task-title"]
-    const description=taskForm["task-description"]
+  const url = await subirArchivo(taskForm["fileInput"].files[0]);
 
-    const url = uploadFile(taskForm["fileInput"].files[0]);
-    
-    
-    saveTask(title.value,description.value, "");
-    taskForm.reset();
-    
-
-
-})
+  guardarPost(title.value, description.value, url);
+  taskForm.reset();
+});
