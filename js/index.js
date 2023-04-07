@@ -17,6 +17,8 @@ taskForm.addEventListener("submit",(e)=>{
     
     
     saveTask(title.value,description.value, "");
+    taskForm.reset();
+    
 
 
 })
