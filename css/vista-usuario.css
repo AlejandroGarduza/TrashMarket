@@ -1,0 +1,21 @@
+.datos-usuario{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    text-align: left;
+    margin-top: 5%;
+    margin-left: 100px;
+}
+
+.imagen-perfil{
+    width: 250px;
+    height: 250px;
+    margin-top: 25%;
+    margin-left: 20px;
+}
+
+.datos-usuario button{
+    background-color: #fff;
+    height: 0px;
+    border: none;
+    cursor: pointer;
+}

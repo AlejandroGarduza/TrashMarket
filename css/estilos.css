@@ -1,5 +1,5 @@
 .menu{
-    background-color:  rgba(255,200,18,1);
+    background-color:  #79E550;
     stroke: black;
     border: 1px solid black;
     height: 70px;
@@ -15,7 +15,7 @@ a:link, a:visited{
     text-decoration: none;
 }
 .barraSuperior{
-    background-color:  rgba(255,200,18,1);
+    background-color:  #79E550;
     height: 70px;
     text-align: center;
 
@@ -43,7 +43,7 @@ a:link, a:visited{
 
 .search button{
     height: 0px;
-    background-color:  rgba(255,200,18,1);
+    background-color:  #79E550;
     margin-right: 16px;
     font-size: 12px;
     border: none;
@@ -72,6 +72,7 @@ a:link, a:visited{
     margin-top: 5px;
     
   }
+  
   
   .notification-btn .badge {
     position: absolute;
