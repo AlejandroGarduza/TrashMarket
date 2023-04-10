@@ -1,9 +1,20 @@
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-analytics.js";
-  import { collection, getFirestore, addDoc } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-firestore.js";
+  import { collection,
+    getFirestore,
+    addDoc,
+    doc,
+    setDoc,
+    getDocs,
+    query,
+    where} from "https://www.gstatic.com/firebasejs/9.6.2/firebase-firestore.js";
   import { getStorage, ref, uploadBytes, getDownloadURL} from "https://www.gstatic.com/firebasejs/9.6.2/firebase-storage.js";
   import {v4} from "https://jspm.dev/uuid";
+
+  
+
+
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -27,9 +38,25 @@
 
   export const storage = getStorage(app); 
 
+
+
+  //Vista post
+
+  export const postRef = collection(db, "post");
   
+  export {
+    query,
+    where,
+    getDocs
+  }
+
+  export const getPost = (id) => getDoc(doc(db,'post',id));
 
 
+
+
+
+  //Crear post
   export const guardarPost = (title, description, url) =>{
     addDoc(collection(db, "post"),{
       titulo: title,
@@ -39,9 +66,6 @@
       alert("Post guardado");
     });
   }
-
-  
-
 
   export function subirArchivo(file) {
   const storageRef = ref(storage, "post/" + v4());
