@@ -9,7 +9,7 @@ import {
 
     let id = "";
     
-    const titulo = document.getElementById("tituloPost");
+    const titulo = document.getElementById("datos-post");
 
     const cuerpo = document.getElementById("cuerpoPost");
     
@@ -23,6 +23,7 @@ import {
         const querySnapshot = await getDocs(consultaPost);
       
         let html = "";
+        let mediaDB = "";
             
         querySnapshot.forEach((doc) => {
           console.log(doc.id, "=>", doc.data());
@@ -30,18 +31,21 @@ import {
           const post = doc.data();
           console.log(doc.data());
           console.log(titulo);
+          mediaDB = post.url;
+
           html += `
               
           <h1 style="margin-left: 40px; margin-top: 5px;">${post.titulo}</h1>
-          <p style="margin-left: 40px; margin-right: 40px; text-align: justify;">${post.cuerpo}</p>
+          <p style="margin-left: 40px; margin-right: 40px; text-align: justify;">${post.descripcion}</p>
               `;
         });
+        titulo.innerHTML = html;
         
         let htmlImagen = "";
 
         htmlImagen += `
             
-            <img class="imagen-perfil"src="https://greenpaper.com/wp/wp-content/uploads/2022/03/tipos-de-reciclaje-imagen-destacada.jpg"/>
+            <img class="img-fluid" src="${mediaDB}"/>
             
             `;
         media.innerHTML = htmlImagen;
