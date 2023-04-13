@@ -6,9 +6,7 @@ import {
   deleteUsuario,
   updateUsuario,
 } from "./firebase.js";
-import{
-  subirArchivo
-} from "../js/firebase.js";
+
 
 let id = "";
 

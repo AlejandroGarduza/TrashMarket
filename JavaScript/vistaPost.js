@@ -4,7 +4,7 @@ import {
     query,
     postRef,
     deletePost,
-    updatePost} from '../js/firebase.js';
+    updatePost} from './firebase.js';
     
     var estadoEditar = false;
 

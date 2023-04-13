@@ -3,11 +3,12 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-app.js";
 
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-analytics.js";
-
+import { getStorage, ref, uploadBytes, getDownloadURL} from "https://www.gstatic.com/firebasejs/9.6.2/firebase-storage.js";
 import {
   getAuth,
   onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-auth.js";
+import{mostrarMensaje} from './mensajeError.js';
 
 import {
   getFirestore,
@@ -22,6 +23,8 @@ import {
   doc,
   updateDoc,
 } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-firestore.js";
+
+import {v4} from "https://jspm.dev/uuid";
 // TODO: Add SDKs for Firebase products that you want to use
 
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -54,6 +57,8 @@ const analytics = getAnalytics(app);
 
 const db = getFirestore();
 
+export const storage = getStorage(app);
+
 export const auth = getAuth(app);
 
 export const saveUsuario = (
@@ -83,8 +88,6 @@ export const getUsuarios = () => getDocs(collection(db, "usuarios"));
 
 export const usuariosRef = collection(db, "usuarios");
 
-export const postRef = collection(db,"post")
-
 export { query, where, getDocs };
 
 export const onGetUsuario = (callback) =>
@@ -111,6 +114,36 @@ export const updateUsuario = (id, nuevosCampos) =>
     }
   });
 
-  
-
   console.log(localStorage.getItem('correo'))
+
+      //Vista post
+  
+      export const postRef = collection(db, "post");
+
+      export const deletePost = id => deleteDoc(doc(db,'post',id));
+
+      //Crear post
+      export const guardarPost = (title, description, url) =>{
+        addDoc(collection(db, "post"),{
+          titulo: title,
+          descripcion: description,
+          url : url
+        }).then(()=>{
+          mostrarMensaje("Post Guardado", "success");
+        });
+      }
+    
+      export function subirArchivo(file) {
+      const storageRef = ref(storage, "post/" + v4());
+      return uploadBytes(storageRef, file)
+        .then(snapshot => {
+          return getDownloadURL(snapshot.ref);
+        })
+        .then(url => {
+          return url;
+        });
+      }
+  
+      //Actualizar Post
+      export const updatePost = (id, nuevosCampos) =>
+    updateDoc(doc(db, "post", id), nuevosCampos);
