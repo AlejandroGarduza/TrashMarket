@@ -83,6 +83,8 @@ export const getUsuarios = () => getDocs(collection(db, "usuarios"));
 
 export const usuariosRef = collection(db, "usuarios");
 
+export const postRef = collection(db,"post")
+
 export { query, where, getDocs };
 
 export const onGetUsuario = (callback) =>

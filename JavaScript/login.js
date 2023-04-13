@@ -7,9 +7,7 @@ const loginForm = document.querySelector('#form-login')
 
 loginForm.addEventListener('submit', async e => {
     e.preventDefault()
-
-    
-
+ 
     const correo = loginForm['usuario-login'].value
     const password = loginForm['password-login'].value
     console.log(correo, password)
@@ -22,7 +20,6 @@ loginForm.addEventListener('submit', async e => {
         mostrarMensaje("Bienvenido", "success")
         window.location.replace('index.html');
         
-
 
     }catch(error){
         
@@ -40,7 +37,11 @@ loginForm.addEventListener('submit', async e => {
 
 })
 
-//export {correo};
-//console.log(correo)
+const btnRegistrar = document.getElementById('registrar');
+
+btnRegistrar.addEventListener('click', () => {
+  window.location.replace('registro-usuario.html');
+});
+
 
     

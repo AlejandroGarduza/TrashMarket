@@ -15,6 +15,9 @@ import {
     
     const media = document.getElementById("mediaPost");
 
+    const postId = new URLSearchParams(window.location.search).get('id');
+    console.log(postId)
+
     window.addEventListener("DOMContentLoaded", async () => {
         const consultaPost = query(
           postRef,
