@@ -120,10 +120,7 @@ correo = localStorage.getItem('correo')
   htmlImagen += `
     <img class="imagen-perfil"src="https://www.record.com.mx/sites/default/files/styles/v2-crop768x433/public/articulos/2023/03/18/20230318_10511.jpg?itok=rt1uwqRW"  width="200px" height="200px" style="border-radius: 100%;"/>
     <br/>
-    <form id="task-form">
-    <input class="col-7 " type="file" id="fileInput" required>  
-    <button class="btn btn-primary btn-lg align-items-right float-right" id="btn-task-save" >Cambiar Imagen</button>  
-    </form>
+    
     
     `;
   imagenPerfil.innerHTML = htmlImagen;

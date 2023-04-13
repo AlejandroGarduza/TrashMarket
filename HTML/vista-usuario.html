@@ -31,9 +31,17 @@
     <!--Referencias a JavaScript-->
     <script type="module" src="../JavaScript/vistaUsuario.js"></script>
     <script type="module" src="../JavaScript/main.js"></script>
-    <script type="module" src="../JavaScript/main.js"></script>
     <script type="module" src="../js/index.js"></script>
     
+    
+    <!--<script>
+      import { subirArchivo } from "../js/firebase.js";
+
+      function actualizarImagen(){
+         subirArchivo(taskForm["fileInput"].files[0]);
+      };
+      
+    </script> -->
   </head>
 
   <body>
@@ -244,6 +252,10 @@
           </div>
         </div>
       </div>
+      <form id="task-form">
+        <input class="col-7 " type="file" id="fileInput" required>  
+        <button onclick="" class="btn btn-primary btn-lg align-items-right float-right" id="btn-task-save" >Cambiar Imagen</button>  
+        </form>
     
   </body>
 </html>
