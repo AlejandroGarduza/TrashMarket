@@ -16,12 +16,6 @@ import {
     
     const media = document.getElementById("mediaPost");
 
-    taskForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-      
-        const url = await subirArchivo(taskForm["fileInput"].files[0]);
-
-      });
 
     window.addEventListener("DOMContentLoaded", async () => {
         const consultaPost = query(
