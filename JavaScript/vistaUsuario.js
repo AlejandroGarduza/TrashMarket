@@ -6,6 +6,9 @@ import {
   deleteUsuario,
   updateUsuario,
 } from "./firebase.js";
+import{
+  subirArchivo
+} from "../js/firebase.js";
 
 let id = "";
 
@@ -14,6 +17,8 @@ const perfilUsuario = document.getElementById("visualizar-usuario");
 const imagenPerfil = document.getElementById("imagen-perfil");
 
 const ultimasPublicacioesn = document.getElementById("articulos-recientes");
+
+const taskForm = document.getElementById("task-form"); //Actualizar Imagen
 
 window.addEventListener("DOMContentLoaded", async () => {
   
@@ -120,7 +125,11 @@ correo = localStorage.getItem('correo')
   htmlImagen += `
     <img class="imagen-perfil"src="https://www.record.com.mx/sites/default/files/styles/v2-crop768x433/public/articulos/2023/03/18/20230318_10511.jpg?itok=rt1uwqRW"  width="200px" height="200px" style="border-radius: 100%;"/>
     <br/>
-    <a href="#" style="color: blue;"> Cambiar imágen </a>
+    <form id="task-form">
+        <input class="col-7 " type="file" id="fileInput" required>  
+        <button class="btn btn-primary btn-lg align-items-right float-right" id="btn-task-save" >Cambiar Imagen</button>
+    </form>
+    
     `;
   imagenPerfil.innerHTML = htmlImagen;
 
@@ -136,6 +145,8 @@ correo = localStorage.getItem('correo')
     `;
   ultimasPublicacioesn.innerHTML = hmtlUltimasPublicaciones;
 });
+
+
 
 
 perfilUsuario.addEventListener('click', (e) => {
