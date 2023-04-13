@@ -7,10 +7,12 @@
     doc,
     setDoc,
     getDocs,
+    deleteDoc,
     query,
     where} from "https://www.gstatic.com/firebasejs/9.6.2/firebase-firestore.js";
   import { getStorage, ref, uploadBytes, getDownloadURL} from "https://www.gstatic.com/firebasejs/9.6.2/firebase-storage.js";
   import {v4} from "https://jspm.dev/uuid";
+  import{mostrarMensaje} from '../JavaScript/mensajeError.js';
 
   
 
@@ -50,7 +52,9 @@
     getDocs
   }
 
-  export const getPost = (id) => getDoc(doc(db,'post',id));
+
+
+  export const deletePost = id => deleteDoc(doc(db,'post',id));
 
 
 
@@ -63,7 +67,7 @@
       descripcion: description,
       url : url
     }).then(()=>{
-      alert("Post guardado");
+      mostrarMensaje("Post Guardado", "success");
     });
   }
 

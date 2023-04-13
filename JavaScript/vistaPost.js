@@ -3,7 +3,7 @@ import {
     where,
     query,
     postRef,
-    getPost} from '../js/firebase.js';
+    deletePost} from '../js/firebase.js';
     
     var estadoEditar = false;
 
@@ -37,9 +37,22 @@ import {
               
           <h1 style="margin-left: 40px; margin-top: 5px;">${post.titulo}</h1>
           <p style="margin-left: 40px; margin-right: 40px; text-align: justify;">${post.descripcion}</p>
+          
+          <button class='btn-eliminar' data-id="${doc.id}"><i class="fa-solid fa-trash"></i>Eliminar Post</button>
               `;
         });
         titulo.innerHTML = html;
+
+        const btnEliminar = titulo.querySelectorAll(".btn-eliminar");
+
+        btnEliminar.forEach((btn) => {
+            btn.addEventListener("click", ({ target: { dataset } }) => {
+            deletePost(dataset.id);
+            console.log(dataset.id);
+            });
+        });
+
+        //Cargar imagen desde la bd
         
         let htmlImagen = "";
 
