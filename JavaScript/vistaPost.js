@@ -3,7 +3,8 @@ import {
     where,
     query,
     postRef,
-    deletePost} from '../js/firebase.js';
+    deletePost,
+    updatePost} from '../js/firebase.js';
     
     var estadoEditar = false;
 
@@ -14,6 +15,13 @@ import {
     const cuerpo = document.getElementById("cuerpoPost");
     
     const media = document.getElementById("mediaPost");
+
+    taskForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+      
+        const url = await subirArchivo(taskForm["fileInput"].files[0]);
+
+      });
 
     window.addEventListener("DOMContentLoaded", async () => {
         const consultaPost = query(
@@ -36,7 +44,11 @@ import {
           html += `
               
           <h1 style="margin-left: 40px; margin-top: 5px;">${post.titulo}</h1>
+          <button class='btn-editar' data-id="${doc.id}"><i class="fa-solid fa-pencil"></i></button>
+            <br/><br/>
           <p style="margin-left: 40px; margin-right: 40px; text-align: justify;">${post.descripcion}</p>
+          <button class='btn-editar' data-id="${doc.id}"><i class="fa-solid fa-pencil"></i></button>
+            <br/><br/>
           
           <button class='btn-eliminar' data-id="${doc.id}"><i class="fa-solid fa-trash"></i>Eliminar Post</button>
               `;

@@ -81,3 +81,7 @@
         return url;
       });
     }
+
+    //Actualizar Post
+    export const updatePost = (id, nuevosCampos) =>
+  updateDoc(doc(db, "post", id), nuevosCampos);
