@@ -4,12 +4,8 @@ import {
   query,
   usuariosRef,
   deleteUsuario,
-  saveUsuario,
-  getUsuario,
   updateUsuario,
 } from "./firebase.js";
-
-var estadoEditar = false;
 
 let id = "";
 
@@ -20,9 +16,14 @@ const imagenPerfil = document.getElementById("imagen-perfil");
 const ultimasPublicacioesn = document.getElementById("articulos-recientes");
 
 window.addEventListener("DOMContentLoaded", async () => {
+  
+let correo = ''
+correo = localStorage.getItem('correo')
+
+  console.log(correo)
   const consultaUsuario = query(
     usuariosRef,
-    where("email", "==", "Marioo189@gmail.com")
+    where("email", "==", correo)
   );
   const querySnapshot = await getDocs(consultaUsuario);
 
@@ -36,8 +37,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     const usuarios = doc.data();
     console.log(doc.data());
     console.log(perfilUsuario);
-    html += `
-        
+    html += `   
             <div id="info-usuario">
                 <label for="nombre">Nombre:</label>
                 <label class='editable' for="nombre">${usuarios.nombre}</label> 
@@ -83,32 +83,13 @@ window.addEventListener("DOMContentLoaded", async () => {
     });
   });
 
-  //const btnEditar = perfilUsuario.querySelectorAll(".btn-editar");
-
-  /**console.log(btnEditar);
-    btnEditar.forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        try {
-          console.log(e.target.dataset.id);
-    
-          console.log('si llego aquí');
-    
-          estadoEditar = true;
-          console.log(estadoEditar)
-          //id = event.target.dataset.id;
-        } catch (error) {
-          console.log(error);
-        }
-      });
-    });*/
-
   const btnEditar = perfilUsuario.querySelectorAll(".btn-editar");
   btnEditar.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       
       e.target.style.display = 'none';
 
-    // mostrar botón de guardar cambios
+      // mostrar botón de guardar cambios
       const btnGuardar = document.createElement('button');
       //btnGuardar.type = 'submit'
       btnGuardar.classList.add('btn-guardar');
@@ -125,7 +106,7 @@ window.addEventListener("DOMContentLoaded", async () => {
         input.id = `${label.getAttribute("for")}-input`;
         label.parentNode.replaceChild(input, label);
 
-        estadoEditar = true
+        //estadoEditar = true
         id =  e.target.dataset.id;
         console.log("Si llego a btnEditar")
       });
@@ -134,12 +115,9 @@ window.addEventListener("DOMContentLoaded", async () => {
 
   console.log(btnEliminar);
 
-  //});
-
   let htmlImagen = "";
 
   htmlImagen += `
-    
     <img class="imagen-perfil"src="https://www.record.com.mx/sites/default/files/styles/v2-crop768x433/public/articulos/2023/03/18/20230318_10511.jpg?itok=rt1uwqRW"  width="200px" height="200px" style="border-radius: 100%;"/>
     <br/>
     <a href="#" style="color: blue;"> Cambiar imágen </a>
@@ -159,38 +137,6 @@ window.addEventListener("DOMContentLoaded", async () => {
   ultimasPublicacioesn.innerHTML = hmtlUltimasPublicaciones;
 });
 
-/**perfilUsuario.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const nombre = perfilUsuario["nombre"].value;
-  const apellido = perfilUsuario["apellido"].value
-  const correo = perfilUsuario["apellido"].value
-  const calle = perfilUsuario["calle"].value
-  const num_exterior = perfilUsuario["num_exterior"].value
-  const cp = perfilUsuario["codigo_postal"].value
-  const descripcion = perfilUsuario["descripcion"].value
-
-  console.log("Si llego aquí")
-
-  updateUsuario(id, { 
-    nombre: nombre.value, 
-    apellido: apellido.value, 
-    correo: correo.value, 
-    calle: calle.value, 
-    num_exterior: num_exterior.value, 
-    cp: cp.value, 
-    descripcion: descripcion.value
-    
-  })
-
-  //Ocultar botón editar
-  const btnEditar = e.target.parentNode.querySelector('.btn-editar');
-    btnEditar.style.display = 'inline-block';
-    e.target.style.display = 'none';
-  estadoEditar = false
-});
-
-*/
 
 perfilUsuario.addEventListener('click', (e) => {
   if (e.target.classList.contains('btn-guardar')) {
@@ -225,7 +171,6 @@ perfilUsuario.addEventListener('click', (e) => {
     const nuevaDescripcion = descripcionInput.value;
 
     // actualizar los datos en la base de datos
-    //const id = e.target.dataset.id;
     updateUsuario(id, {
       nombre: nuevoNombre,
       apellido: nuevoApellido,
@@ -252,46 +197,3 @@ perfilUsuario.addEventListener('click', (e) => {
 });
 
 console.log("pq no imprimo");
-
-/** 
-window.addEventListener('DOMContentLoaded', async () =>{
-    
-    onGetUsuario((querySnapshot)=>{
-    
-    let html = ''
-    
-    querySnapshot.forEach(doc =>{
-        
-        const usuarios =doc.data()
-        console.log(doc.data())
-        console.log(perfilUsuario)  
-        html += `
-        <form>
-            <div>
-                <label for="nombre">Nombre:</label>
-                <label>${usuarios.nombre}</label>
-                <label>${usuarios.apellido}</label>
-                <br/>
-                <label for="correo">Correo:</label>
-                <label>${usuarios.email}</label>
-                <br/>
-                <label for="telefono">Telefono:</label>
-                <label>${usuarios.telefono}</label>
-                <label for="direccion">Direccion:</label>
-                <!--
-                <label>${usuarios.calle}</label>
-                <label>${usuarios.codigo_postal}</label>
-                <label>${usuarios.num_exterior}</label>
-                -->
-            </div> 
-        </form>
-        
-        `
-        })
-    
-    perfilUsuario.innerHTML = html
-    })
-    
-    
-})
-*/

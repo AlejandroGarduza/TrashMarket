@@ -5,18 +5,25 @@ import{mostrarMensaje} from './mensajeError.js'
 
 const loginForm = document.querySelector('#form-login')
 
-
 loginForm.addEventListener('submit', async e => {
     e.preventDefault()
+
+    
 
     const correo = loginForm['usuario-login'].value
     const password = loginForm['password-login'].value
     console.log(correo, password)
 
+    console.log(correo)
+
     try{
         const credenciales = await signInWithEmailAndPassword(auth,correo,password) 
         console.log(credenciales)
         mostrarMensaje("Bienvenido", "success")
+        window.location.replace('index.html');
+        
+
+
     }catch(error){
         
         console.log(error.message)
@@ -32,5 +39,8 @@ loginForm.addEventListener('submit', async e => {
     }
 
 })
+
+//export {correo};
+//console.log(correo)
 
     

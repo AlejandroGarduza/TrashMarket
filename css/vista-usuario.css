@@ -15,7 +15,8 @@
 
 .datos-usuario button{
     background-color: #fff;
-    height: 0px;
+    height: 35px;
+    width: 35px;
     border: none;
     cursor: pointer;
 }

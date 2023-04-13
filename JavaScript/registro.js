@@ -1,6 +1,6 @@
 import {saveUsuario, auth} from './firebase.js'
 import {createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-auth.js";
-import{ mostrarMensaje} from './mensajeError.js'
+import {mostrarMensaje} from './mensajeError.js'
 
 
 window.addEventListener('DOMContentLoaded', () =>{
@@ -30,7 +30,7 @@ const formulario = document.getElementById('registro-usuario');
             formulario.reset()
         }else{
             console.log('Las contraseñas nos coinciden')
-            
+            mostrarMensaje("Las contraseñas nos coinciden", "error")
         }
     
         console.log(authCorreo, authPassword);
@@ -38,7 +38,7 @@ const formulario = document.getElementById('registro-usuario');
        try{
         const credenciales = await createUserWithEmailAndPassword(auth, authCorreo, authPassword)
         console.log(credenciales)
-        mostrarMensaje("Bienvenido: " + credenciales.nombre, "success")
+        mostrarMensaje("Bienvenido: " + nombre.value, "success")
        }catch(error){
         console.log(error.message)
         console.log(error.code)
@@ -55,35 +55,3 @@ const formulario = document.getElementById('registro-usuario');
        }  
         console.log('submiting')
     })
-
-/*formulario.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = formulario['correo'].value;
-    const password = formulario['password'].value;
-
-    console.log(email, password);
-
-   try{
-    const credenciales = await createUserWithEmailAndPassword(auth, email, password)
-    console.log(credenciales)
-   }catch(error){
-    console.log(error.message)
-    console.log(error.code)
-
-    if(error.code === 'auth/email-already-in-use'){
-        alert('user already in use')
-    }
-    if(error.code === 'auth/invalid-email'){
-        alert('invalid email')
-    }
-    if(error.code === 'auth/weak-password'){
-        alert('weak password')
-    }
-   }
-
-    
-});*/
-
-
-
-
