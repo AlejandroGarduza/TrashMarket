@@ -8,6 +8,11 @@ import {
   subirArchivo
 } from "./firebase.js";
 
+import { signOut } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-auth.js";
+import {auth} from './firebase.js'
+
+import{mostrarMensaje} from './mensajeError.js'
+
 
 let id = "";
 
@@ -32,8 +37,6 @@ correo = localStorage.getItem('correo')
   const querySnapshot = await getDocs(consultaUsuario);
 
   let html = "";
-
-  //onGetUsuario((querySnapshot)=>{
 
   querySnapshot.forEach((doc) => {
     console.log(doc.id, "=>", doc.data());
@@ -124,7 +127,7 @@ correo = localStorage.getItem('correo')
               url: x
             });
 
-            alert("Imagen actualizada correctamente");
+            mostrarMensaje("Imagen actualizada correctamente","success");
             localStorage.removeItem('urlImagen')
             //window.location.reload();
 
@@ -139,8 +142,10 @@ correo = localStorage.getItem('correo')
   const btnEliminar = perfilUsuario.querySelectorAll(".btn-eliminar");
 
   btnEliminar.forEach((btn) => {
-    btn.addEventListener("click", ({ target: { dataset } }) => {
+    btn.addEventListener("click", async ({ target: { dataset } }) => {
       deleteUsuario(dataset.id);
+      await signOut(auth)
+      window.location.replace('index.html');
       console.log(dataset.id);
     });
   });
@@ -236,6 +241,8 @@ perfilUsuario.addEventListener('click', (e) => {
     btnEditar.style.display = 'inline-block';
     e.target.style.display = 'none';
     btnEliminar.style.display = 'inline-block';
+
+    mostrarMensaje("Datos actualizados correctamente", "success")
   }
 });
 
