@@ -9,3 +9,21 @@
   .publicacion:hover {
     background-color: #DDDDDD;
   }
+
+  .green-circle {
+    background-color: #79E550;
+    border: none;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  
+  .plus-symbol {
+    color: white;
+    font-size: 70px;
+    
+  }

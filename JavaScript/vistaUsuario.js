@@ -119,17 +119,17 @@ correo = localStorage.getItem('correo')
         
         const btnGuardarImg = imagenPerfil.querySelector(".btn-task-save");
         btnGuardarImg.addEventListener('click', (e) => {
-          let x = ""+localStorage.getItem('urlImagen')
+          let url = ""+localStorage.getItem('urlImagen')
           
             id =  e.target.dataset.id;
             console.log(btnGuardarImg)
             console.log("llegue a btn-task-save")
             console.log(id);
             updateUsuario(id, {
-              url: x
-        
+              url: url
             });
-      
+
+            alert("Imagen actualizada correctamente");      
         
       });
     });
