@@ -19,11 +19,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
   }
   
   .plus-symbol {
     color: white;
     font-size: 70px;
+    margin-bottom: 12px;
     
   }

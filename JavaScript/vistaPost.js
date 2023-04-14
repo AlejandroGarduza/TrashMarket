@@ -40,11 +40,11 @@ import {
 
           html += `
               <div class="datosPost">
-          <label class="editable" style="margin-left: 40px; margin-top: 5px;" for="titulo">${post.titulo}</label>
-          <button class='btn-editar' data-id="${doc.id}"><i class="fa-solid fa-pencil"></i>editar</button>
+          <label class="editable" style="margin-left: 40px; margin-top: 5px; font-size: 50px;" for="titulo">${post.titulo}</label>
+          
             <br/><br/>
           <label class="editableTF" style="margin-left: 40px; margin-right: 40px; text-align: justify;" for="descripcion">${post.descripcion}</label>
-          <button class='btn-editar' data-id="${doc.id}"><i class="fa-solid fa-pencil"></i>editar</button>
+          <button style="margin-left: 90%" class='btn-editar' data-id="${doc.id}"><i class="fa-solid fa-pencil"></i>editar</button>
             <br/><br/>
 
             <div id="asignarImg" style="display: flex; justify-content: center; align-items: center;"></div>
