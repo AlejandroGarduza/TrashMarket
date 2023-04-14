@@ -74,7 +74,7 @@ correo = localStorage.getItem('correo')
         let htmlImagen = "";
 
         htmlImagen += `
-          <img class="${usuarios.url_imagen}"  width="200px" height="200px" style="border-radius: 100%;"/>
+          <img src="${usuarios.url}" class="imagen-perfil"  width="200px" height="200px" style="border-radius: 100%;"/>
           <br/>
           <form id="task-form" class="asignarImg">
               <input class="col-7 " type="file" id="fileInput" required>  
@@ -100,32 +100,36 @@ correo = localStorage.getItem('correo')
         const taskForm = imagenPerfil.querySelector(".asignarImg"); //Actualizar Imagen
         console.log(imagenPerfil);
         console.log(taskForm);
-        
-        
-        taskForm.addEventListener("submit", async (e) => {
+
+
+        const btnGuardarImg = imagenPerfil.querySelector(".btn-task-save");
+
+        btnGuardarImg.addEventListener("click", async (e) => {
           e.preventDefault();
         
           console.log("llegue aqui")
           urlImg = await subirArchivo(taskForm["fileInput"].files[0]);
-          localStorage.setItem('urlImagen',urlImg)       
-        });
-      
-        
-        const btnGuardarImg = imagenPerfil.querySelector(".btn-task-save");
-        btnGuardarImg.addEventListener('click', (e) => {
-          let url = ""+localStorage.getItem('urlImagen')
+          localStorage.setItem('urlImagen',urlImg)
+          console.log(localStorage.getItem('urlImagen')) 
           
+          let x = ""+localStorage.getItem('urlImagen')
+          
+            console.log(x)
             id =  e.target.dataset.id;
+            console.log(id)
             console.log(btnGuardarImg)
             console.log("llegue a btn-task-save")
             console.log(id);
             updateUsuario(id, {
-              url: url
+              url: x
             });
 
-            alert("Imagen actualizada correctamente");      
-        
-      });
+            alert("Imagen actualizada correctamente");
+            localStorage.removeItem('urlImagen')
+            //window.location.reload();
+
+        });
+
     });
     
 
