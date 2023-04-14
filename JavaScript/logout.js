@@ -15,6 +15,7 @@ logout.addEventListener('click', async () => {
       localStorage.clear('correo');
       localStorage.clear('uid');
       console.log('signout');
+      window.location.replace('index.html');
    })
 
  });

@@ -26,8 +26,26 @@ const formulario = document.getElementById('registro-usuario');
         const confirmacion = formulario['validar-password']
 
         if(confirmacion.value === password.value){
-            saveUsuario(nombre.value, apellido.value, correo.value, tel.value, password.value, calle.value, cp.value,numeroCasa.value, "Escribe tu descripción aquí")
-            formulario.reset()
+            try{
+                const credenciales = await createUserWithEmailAndPassword(auth, authCorreo, authPassword)
+                console.log(credenciales)
+                saveUsuario(nombre.value, apellido.value, correo.value, tel.value, password.value, calle.value, cp.value,numeroCasa.value, "Escribe tu descripción aquí")
+                formulario.reset()
+                mostrarMensaje("Bienvenido: " + nombre.value, "success")
+               }catch(error){
+                console.log(error.message)
+                console.log(error.code)
+            
+                if(error.code === 'auth/email-already-in-use'){
+                    mostrarMensaje("Correo ya registrado", "error")
+                }
+                if(error.code === 'auth/invalid-email'){
+                    mostrarMensaje("Correo no valido", "error")
+                }
+                if(error.code === 'auth/weak-password'){
+                    mostrarMensaje("Contraseña demasiado debil", "error")
+                }
+               }  
         }else{
             console.log('Las contraseñas nos coinciden')
             mostrarMensaje("Las contraseñas nos coinciden", "error")
@@ -35,23 +53,5 @@ const formulario = document.getElementById('registro-usuario');
     
         console.log(authCorreo, authPassword);
     
-       try{
-        const credenciales = await createUserWithEmailAndPassword(auth, authCorreo, authPassword)
-        console.log(credenciales)
-        mostrarMensaje("Bienvenido: " + nombre.value, "success")
-       }catch(error){
-        console.log(error.message)
-        console.log(error.code)
-    
-        if(error.code === 'auth/email-already-in-use'){
-            mostrarMensaje("Correo ya registrado", "error")
-        }
-        if(error.code === 'auth/invalid-email'){
-            mostrarMensaje("Correo no valido", "error")
-        }
-        if(error.code === 'auth/weak-password'){
-            mostrarMensaje("Contraseña demasiado debil", "error")
-        }
-       }  
         console.log('submiting')
     })
