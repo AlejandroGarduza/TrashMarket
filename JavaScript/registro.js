@@ -24,9 +24,10 @@ const formulario = document.getElementById('registro-usuario');
         const cp = formulario['cp']
         const numeroCasa = formulario['numeroCasa']
         const confirmacion = formulario['validar-password']
+        const urlPerfil ='https://static.vecteezy.com/system/resources/previews/014/300/061/non_2x/man-profile-glyph-icon-anonymous-photo-for-documents-illustration-vector.jpg'
 
         if(confirmacion.value === password.value){
-            saveUsuario(nombre.value, apellido.value, correo.value, tel.value, password.value, calle.value, cp.value,numeroCasa.value, "Escribe tu descripción aquí")
+            saveUsuario(nombre.value, apellido.value, correo.value, tel.value, password.value, calle.value, cp.value,numeroCasa.value, "Escribe tu descripción aquí", urlPerfil)
             formulario.reset()
         }else{
             console.log('Las contraseñas nos coinciden')

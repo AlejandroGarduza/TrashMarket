@@ -124,13 +124,14 @@ correo = localStorage.getItem('correo')
   htmlImagen += `
     <img class="imagen-perfil"src="https://www.record.com.mx/sites/default/files/styles/v2-crop768x433/public/articulos/2023/03/18/20230318_10511.jpg?itok=rt1uwqRW"  width="200px" height="200px" style="border-radius: 100%;"/>
     <br/>
-    <form id="task-form">
+    <form id="task-form" class="asignarImg">
         <input class="col-7 " type="file" id="fileInput" required>  
         <button class="btn btn-primary btn-lg align-items-right float-right" id="btn-task-save" >Cambiar Imagen</button>
     </form>
     
     `;
   imagenPerfil.innerHTML = htmlImagen;
+  
 
   let hmtlUltimasPublicaciones = "";
 
@@ -143,17 +144,21 @@ correo = localStorage.getItem('correo')
     </div>
     `;
   ultimasPublicacioesn.innerHTML = hmtlUltimasPublicaciones;
+
+  const taskForm = imagenPerfil.querySelector(".asignarImg"); //Actualizar Imagen
+  console.log(imagenPerfil);
+  console.log(taskForm);
+  
+  
+  taskForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+  
+    console.log("llegue aqui")
+    const url = await subirArchivo(taskForm["fileInput"].files[0]);
+  
+  });
 });
 
-const taskForm = document.getElementById("task-form"); //Actualizar Imagen
-
-taskForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  console.log("llegue aqui")
-  const url = await subirArchivo(taskForm["fileInput"].files[0]);
-
-});
 
 
 
