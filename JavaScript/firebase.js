@@ -70,7 +70,8 @@ export const saveUsuario = (
   calle,
   codigo_postal,
   num_exterior,
-  descripcion
+  descripcion,
+  url
 ) =>
   addDoc(collection(db, "usuarios"), {
     nombre,
@@ -82,6 +83,7 @@ export const saveUsuario = (
     codigo_postal,
     num_exterior,
     descripcion,
+    url
   });
 
 export const getUsuarios = () => getDocs(collection(db, "usuarios"));

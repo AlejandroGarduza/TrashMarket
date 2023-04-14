@@ -5,6 +5,7 @@ import {
   usuariosRef,
   deleteUsuario,
   updateUsuario,
+  subirArchivo
 } from "./firebase.js";
 
 
@@ -16,7 +17,7 @@ const imagenPerfil = document.getElementById("imagen-perfil");
 
 const ultimasPublicacioesn = document.getElementById("articulos-recientes");
 
-//const taskForm = document.getElementById("task-form"); //Actualizar Imagen
+let urlImg = "";
 
 window.addEventListener("DOMContentLoaded", async () => {
   
@@ -73,16 +74,61 @@ correo = localStorage.getItem('correo')
         let htmlImagen = "";
 
         htmlImagen += `
-          <img class="imagen-perfil"src="${usuarios.url_imagen}"  width="200px" height="200px" style="border-radius: 100%;"/>
+          <img class="${usuarios.url_imagen}"  width="200px" height="200px" style="border-radius: 100%;"/>
           <br/>
-          <form id="task-form">
+          <form id="task-form" class="asignarImg">
               <input class="col-7 " type="file" id="fileInput" required>  
-              <button class="btn btn-primary btn-lg align-items-right float-right" id="btn-task-save" >Cambiar Imagen</button>
+              <button class="btn-task-save" data-id="${doc.id}" id="btn-task-save" >Cambiar Imagen</button>
           </form>
           
           `;
         imagenPerfil.innerHTML = htmlImagen;
-  });
+        
+      
+        let hmtlUltimasPublicaciones = "";
+      
+        hmtlUltimasPublicaciones += `
+          <h1>Últimas publicaciones</h1>
+      
+          <div style="border: 5px; background-color: #EEEEEE;">
+          <p> Escoba </p>
+      
+          </div>
+          `;
+        ultimasPublicacioesn.innerHTML = hmtlUltimasPublicaciones;
+      
+        const taskForm = imagenPerfil.querySelector(".asignarImg"); //Actualizar Imagen
+        console.log(imagenPerfil);
+        console.log(taskForm);
+        
+        
+        taskForm.addEventListener("submit", async (e) => {
+          e.preventDefault();
+        
+          console.log("llegue aqui")
+          urlImg = await subirArchivo(taskForm["fileInput"].files[0]);
+          localStorage.setItem('urlImagen',urlImg)       
+        });
+      
+        
+        const btnGuardarImg = imagenPerfil.querySelector(".btn-task-save");
+        btnGuardarImg.addEventListener('click', (e) => {
+          let url = ""+localStorage.getItem('urlImagen')
+          
+            id =  e.target.dataset.id;
+            console.log(btnGuardarImg)
+            console.log("llegue a btn-task-save")
+            console.log(id);
+            updateUsuario(id, {
+              url: url
+            });
+
+            alert("Imagen actualizada correctamente");      
+        
+      });
+    });
+    
+
 
   perfilUsuario.innerHTML = html;
 
@@ -127,18 +173,10 @@ correo = localStorage.getItem('correo')
 
   console.log(btnEliminar);
 
-  let hmtlUltimasPublicaciones = "";
-
-  hmtlUltimasPublicaciones += `
-    <h1>Últimas publicaciones</h1>
-
-    <div style="border: 5px; background-color: #EEEEEE;">
-    <p> Escoba </p>
-
-    </div>
-    `;
-  ultimasPublicacioesn.innerHTML = hmtlUltimasPublicaciones;
 });
+
+
+
 
 
 
@@ -178,7 +216,8 @@ perfilUsuario.addEventListener('click', (e) => {
       calle: nuevaCalle,
       num_exterior: nuevoNumExterior,
       codigo_postal:nuevoCodigoPostal,
-      descripcion:nuevaDescripcion
+      descripcion:nuevaDescripcion,
+
     });
 
     // volver a mostrar los labels con los nuevos valores

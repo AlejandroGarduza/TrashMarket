@@ -24,3 +24,18 @@
 .btn-eliminar{
     margin-left: 100px;
 }
+.datosPost button{
+    background-color: #fff;
+    height: 35px;
+    width: 70px;
+    border: none;
+    cursor: pointer;
+}
+
+.datosPost .btn-eliminar{
+    background-color: #fff;
+    height: 35px;
+    width: 130px;
+    border: none;
+    cursor: pointer;
+}
