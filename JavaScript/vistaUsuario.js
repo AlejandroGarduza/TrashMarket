@@ -17,6 +17,8 @@ const imagenPerfil = document.getElementById("imagen-perfil");
 
 const ultimasPublicacioesn = document.getElementById("articulos-recientes");
 
+let urlImg = "";
+
 
 
 window.addEventListener("DOMContentLoaded", async () => {
@@ -74,7 +76,65 @@ correo = localStorage.getItem('correo')
             </div> 
         
         `;
-  });
+
+        let htmlImagen = "";
+
+        htmlImagen += `
+          <img class="imagen-perfil"src="https://www.record.com.mx/sites/default/files/styles/v2-crop768x433/public/articulos/2023/03/18/20230318_10511.jpg?itok=rt1uwqRW"  width="200px" height="200px" style="border-radius: 100%;"/>
+          <br/>
+          <form id="task-form" class="asignarImg">
+              <input class="col-7 " type="file" id="fileInput" required>  
+              <button class="btn-task-save" data-id="${doc.id}" id="btn-task-save" >Cambiar Imagen</button>
+          </form>
+          
+          `;
+        imagenPerfil.innerHTML = htmlImagen;
+        
+      
+        let hmtlUltimasPublicaciones = "";
+      
+        hmtlUltimasPublicaciones += `
+          <h1>Últimas publicaciones</h1>
+      
+          <div style="border: 5px; background-color: #EEEEEE;">
+          <p> Escoba </p>
+      
+          </div>
+          `;
+        ultimasPublicacioesn.innerHTML = hmtlUltimasPublicaciones;
+      
+        const taskForm = imagenPerfil.querySelector(".asignarImg"); //Actualizar Imagen
+        console.log(imagenPerfil);
+        console.log(taskForm);
+        
+        
+        taskForm.addEventListener("submit", async (e) => {
+          e.preventDefault();
+        
+          console.log("llegue aqui")
+          urlImg = await subirArchivo(taskForm["fileInput"].files[0]);
+          localStorage.setItem('urlImagen',urlImg)       
+        });
+      
+        
+        const btnGuardarImg = imagenPerfil.querySelector(".btn-task-save");
+        btnGuardarImg.addEventListener('click', (e) => {
+          let x = ""+localStorage.getItem('urlImagen')
+          
+            id =  e.target.dataset.id;
+            console.log(btnGuardarImg)
+            console.log("llegue a btn-task-save")
+            console.log(id);
+            updateUsuario(id, {
+              url: x
+        
+            });
+      
+        
+      });
+    });
+    
+
 
   perfilUsuario.innerHTML = html;
 
@@ -119,45 +179,15 @@ correo = localStorage.getItem('correo')
 
   console.log(btnEliminar);
 
-  let htmlImagen = "";
+ 
 
-  htmlImagen += `
-    <img class="imagen-perfil"src="https://www.record.com.mx/sites/default/files/styles/v2-crop768x433/public/articulos/2023/03/18/20230318_10511.jpg?itok=rt1uwqRW"  width="200px" height="200px" style="border-radius: 100%;"/>
-    <br/>
-    <form id="task-form" class="asignarImg">
-        <input class="col-7 " type="file" id="fileInput" required>  
-        <button class="btn btn-primary btn-lg align-items-right float-right" id="btn-task-save" >Cambiar Imagen</button>
-    </form>
     
-    `;
-  imagenPerfil.innerHTML = htmlImagen;
-  
 
-  let hmtlUltimasPublicaciones = "";
 
-  hmtlUltimasPublicaciones += `
-    <h1>Últimas publicaciones</h1>
 
-    <div style="border: 5px; background-color: #EEEEEE;">
-    <p> Escoba </p>
-
-    </div>
-    `;
-  ultimasPublicacioesn.innerHTML = hmtlUltimasPublicaciones;
-
-  const taskForm = imagenPerfil.querySelector(".asignarImg"); //Actualizar Imagen
-  console.log(imagenPerfil);
-  console.log(taskForm);
-  
-  
-  taskForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-  
-    console.log("llegue aqui")
-    const url = await subirArchivo(taskForm["fileInput"].files[0]);
-  
-  });
 });
+
+
 
 
 
@@ -168,14 +198,11 @@ perfilUsuario.addEventListener('click', (e) => {
     // obtener los nuevos valores de los inputs
     const inputs = e.target.parentNode.querySelectorAll('input');
     console.log(inputs)
-    const nuevosValores = {};
-    inputs.forEach((input) => {
-      nuevosValores[input.getAttribute('name')] = input.value;
-      console.log(nuevosValores)
-    });
+    
+    
 
     console.log(id)
-    console.log(nuevosValores.value)
+    
 
     const nombreInput = document.getElementById("nombre-input")
     const apellidoInput = document.getElementById('apellido-input');
@@ -204,7 +231,8 @@ perfilUsuario.addEventListener('click', (e) => {
       calle: nuevaCalle,
       num_exterior: nuevoNumExterior,
       codigo_postal:nuevoCodigoPostal,
-      descripcion:nuevaDescripcion
+      descripcion:nuevaDescripcion,
+
     });
 
     // volver a mostrar los labels con los nuevos valores
