@@ -5,6 +5,7 @@ import {
   usuariosRef,
   deleteUsuario,
   updateUsuario,
+  subirArchivo
 } from "./firebase.js";
 
 
@@ -16,7 +17,7 @@ const imagenPerfil = document.getElementById("imagen-perfil");
 
 const ultimasPublicacioesn = document.getElementById("articulos-recientes");
 
-const taskForm = document.getElementById("task-form"); //Actualizar Imagen
+
 
 window.addEventListener("DOMContentLoaded", async () => {
   
@@ -142,6 +143,16 @@ correo = localStorage.getItem('correo')
     </div>
     `;
   ultimasPublicacioesn.innerHTML = hmtlUltimasPublicaciones;
+});
+
+const taskForm = document.getElementById("task-form"); //Actualizar Imagen
+
+taskForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  console.log("llegue aqui")
+  const url = await subirArchivo(taskForm["fileInput"].files[0]);
+
 });
 
 
