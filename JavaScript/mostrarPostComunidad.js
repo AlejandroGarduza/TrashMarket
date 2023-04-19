@@ -20,7 +20,7 @@ getDocs(postRef).then((querySnapshot) => {
 
 		// Agrega un controlador de eventos al div para redirigir al usuario a la página de la publicación
 		publicacionDiv.addEventListener('click', () => {
-			window.location.replace(`visualizarPost.html?id=${doc.id}`);
+			window.location.replace(`visualizarPost.html?id=${docData.titulo}`);
 		});
 
 

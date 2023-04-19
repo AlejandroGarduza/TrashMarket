@@ -17,13 +17,15 @@ import {
     const cuerpo = document.getElementById("cuerpoPost");
     
     const media = document.getElementById("mediaPost");
-    const postId = new URLSearchParams(window.location.search).get('id');
-    console.log(postId)
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const tituloPost = urlParams.get('id')
+    console.log(urlParams)
 
     window.addEventListener("DOMContentLoaded", async () => {
         const consultaPost = query(
           postRef,
-          where("titulo", "==", "Como reciclar pet")
+          where("titulo", "==", tituloPost)
         );
         const querySnapshot = await getDocs(consultaPost);
       
