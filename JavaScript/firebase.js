@@ -149,3 +149,23 @@ export const updateUsuario = (id, nuevosCampos) =>
       //Actualizar Post
       export const updatePost = (id, nuevosCampos) =>
     updateDoc(doc(db, "post", id), nuevosCampos);
+
+
+    //PostVenta
+    export const ventaRef = collection(db, "ventas");
+
+      export const deleteVenta = id => deleteDoc(doc(db,'ventas',id));
+
+      export const guardarVenta = (title, category, price, amount, description, urlImg, vendedor) =>{
+        addDoc(collection(db, "ventas"),{
+          titulo: title,
+          categoria: category,
+          precio: price,
+          cantidad: amount,
+          descripcion: description,
+          url : urlImg,
+          vendedor: vendedor
+        }).then(()=>{
+          mostrarMensaje("Post de venta Guardado", "success");
+        });
+      }
