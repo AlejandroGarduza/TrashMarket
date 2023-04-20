@@ -1,4 +1,4 @@
-import { guardarPost, subirArchivo } from "./firebase.js";
+import { guardarPost, storage, subirArchivo } from "./firebase.js";
 
 window.addEventListener("DOMContentLoaded", () => {});
 
@@ -12,7 +12,9 @@ taskForm.addEventListener("submit", async (e) => {
 
   const url = await subirArchivo(taskForm["fileInput"].files[0]);
 
-  guardarPost(title.value, description.value, url);
+  const autor = ''+localStorage.getItem('correo');
+
+  guardarPost(title.value, description.value, url, autor);
   taskForm.reset();
 });
 

@@ -12,7 +12,8 @@ taskForm.addEventListener("submit", async (e) => {
   const price = taskForm["postVenta-precio"];
   const amount = taskForm["postVenta-inventario"];
   const description = taskForm["postVenta-descripcion"];
-  const vendedor ="a"+ localStorage.getItem("correo");
+  const vendedor =''+localStorage.getItem("correo");
+  console.log(vendedor)
 
   const url = await subirArchivo(taskForm["fileInput"].files[0]);
 
