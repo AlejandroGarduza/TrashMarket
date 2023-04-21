@@ -6,10 +6,6 @@ import {
     deletePost,
     updatePost} from './firebase.js';
 
-
-    
-    var estadoEditar = false;
-
     let id = "";
     
     const titulo = document.getElementById("datos-post");
@@ -173,3 +169,4 @@ import {
         });
 
     });
+  

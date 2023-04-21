@@ -170,3 +170,9 @@ export const updateUsuario = (id, nuevosCampos) =>
           mostrarMensaje("Post de venta Guardado", "success");
         });
       }
+
+      //Vista postVenta
+  
+      export const postVentaRef = collection(db, "ventas");
+
+      export const deletePostVenta = id => deleteDoc(doc(db,'ventas',id));
