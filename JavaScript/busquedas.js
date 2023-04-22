@@ -1,16 +1,8 @@
-import {usuariosRef, postRef, where, getDocs, query} from './firebase.js'
-
-
-const btnBuscar = document.getElementById('btn-busqueda')
-console.log(btnBuscar)
-
-btnBuscar.addEventListener('click',() => {
-
-    const searchTerm = document.querySelector('input[name="search"]').value;
-
-    //window.location.replace('resultados-busqueda.html');
-
-    console.log(searchTerm)
+import {usuariosRef, where, getDocs, query} from './firebase.js'
+   
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const searchTerm = urlParams.get('id')
 
     const q = query(usuariosRef, where("nombre", "==", searchTerm));
     
@@ -24,9 +16,8 @@ btnBuscar.addEventListener('click',() => {
         const docData = doc.data();
 
         const publicacionDiv = document.createElement('div');
-		publicacionDiv.classList.add('publicacion');
-
-		// Agrega el título y el extracto de la publicación al div
+		publicacionDiv.classList.add('publicacion')
+        
 		publicacionDiv.innerHTML = `
         <div class="d-flex flex-wrap align-items-center">
             <div class="col-md-2">
@@ -53,7 +44,3 @@ btnBuscar.addEventListener('click',() => {
     }).catch((error) => {
       console.log("Error:", error);
     });
-
-    
-
-})
