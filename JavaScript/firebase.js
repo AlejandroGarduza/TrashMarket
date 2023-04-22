@@ -149,7 +149,7 @@ export const updateUsuario = (id, nuevosCampos) =>
   
       //Actualizar Post
       export const updatePost = (id, nuevosCampos) =>
-    updateDoc(doc(db, "post", id), nuevosCampos);
+      updateDoc(doc(db, "post", id), nuevosCampos);
 
 
     //PostVenta
@@ -176,3 +176,7 @@ export const updateUsuario = (id, nuevosCampos) =>
       export const postVentaRef = collection(db, "ventas");
 
       export const deletePostVenta = id => deleteDoc(doc(db,'ventas',id));
+
+      //Actualizar PostVenta
+      export const updatePostVenta = (id, nuevosCampos) =>
+      updateDoc(doc(db, "ventas", id), nuevosCampos);
