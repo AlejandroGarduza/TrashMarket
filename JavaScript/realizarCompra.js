@@ -75,8 +75,6 @@ import {
 
       datos.innerHTML = html;
 
-        //continuación????
-
         //Cargar imagen desde la bd
         
         let htmlImagen = "";
@@ -113,14 +111,46 @@ import {
             }
         );
 
-        
-        
+        //Boton de comprar
+        const comprar = document.getElementById("comprar");
+
+        comprar.addEventListener("click", () => {
+            if (contador > 0) {
+                realizarPago();
+            }
+            else {
+                alert("No ha seleccionado ninguna cantidad");
+            }
+        }
+        );
 
 
-
-
-
-
-
-
+        function realizarPago() {
+            console.log("realizar pago");
+          
+            // Crea un objeto de preferencia
+            var preference = {
+              items: [
+                {
+                  title: 'Producto de ejemplo',
+                  unit_price: 100,
+                  quantity: 1
+                }
+              ]
+            };
+          
+            // Verifica si la librería de MercadoPago está cargada
+            if (typeof window.Mercadopago !== 'undefined') {
+              // Inicializa el SDK de MercadoPago
+              window.Mercadopago.setPublishableKey('TEST-8233478592533435-042400-01492d02dd1efee60e1a60a4f5fca5e5-198871915');
+          
+              // Crea la preferencia de pago
+              window.Mercadopago.createPreference(preference, function(response) {
+                console.log(response);
+              });
+            } else {
+              // Si la librería de MercadoPago no está cargada, muestra un mensaje de error
+              alert('La librería de MercadoPago no se ha cargado correctamente.');
+            }
+          }
     });
