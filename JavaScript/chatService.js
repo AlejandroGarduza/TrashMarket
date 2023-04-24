@@ -5,9 +5,12 @@ import {onValue, set, ref, child } from "https://www.gstatic.com/firebasejs/9.6.
 // Obtener el usuario actual
 const auth = getAuth();
 const user = ''+localStorage.getItem('correo');
-const recipient = 'marioo189@gmail';
+const recipient = 'marioo189';
 console.log('Usuario: '+ user)
-const conversationId = ["correo", recipient].sort().join('-');
+const correoID = user.split('@')[0];
+const correoIDsinPuntos = correoID.replace(/\./g, '');
+console.log(correoIDsinPuntos)
+const conversationId = [correoIDsinPuntos, recipient].sort().join('-');
 console.log(conversationId)
 
 const dbRef = ref(realtimeDB)
@@ -23,7 +26,7 @@ chatForm.addEventListener("submit", (event) => {
 
   const message = chatInput.value.trim();
   if (message === "") return;
-  set(child(dbRef, "chat"+conversationId), {
+  set(child(dbRef, "chat/"+conversationId), {
   message: message,
   sender: user,
   timestamp: Date.now(),
@@ -33,7 +36,7 @@ chatForm.addEventListener("submit", (event) => {
 });
 
 // Mostrar los mensajes en la interfaz de usuario
-onValue(child(dbRef, "chat"+conversationId), (snapshot) => {
+onValue(child(dbRef, "chat/"+conversationId), (snapshot) => {
   const message = snapshot.val();
   const messageElement = document.createElement("div");
   messageElement.classList.add("message");
