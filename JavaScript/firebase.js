@@ -8,6 +8,9 @@ import {
   getAuth,
   onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-auth.js";
+
+import {getDatabase} from 'https://www.gstatic.com/firebasejs/9.6.2/firebase-database.js'
+
 import{mostrarMensaje} from './mensajeError.js';
 
 import {
@@ -47,6 +50,8 @@ const firebaseConfig = {
   appId: "1:887542065701:web:110e6ca398709669ecedcc",
 
   measurementId: "G-RE9T5N2LY2",
+
+  databaseURL: 'https://trashmarket-e84ca-default-rtdb.firebaseio.com/'
 };
 
 // Initialize Firebase
@@ -54,6 +59,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const analytics = getAnalytics(app);
+
+export const realtimeDB = getDatabase();
 
 const db = getFirestore();
 
@@ -85,6 +92,8 @@ export const saveUsuario = (
     descripcion,
     url
   });
+
+//export const realtimeDBRef = ref(realtimeDB, "chats");
 
 export const getUsuarios = () => getDocs(collection(db, "usuarios"));
 
@@ -135,7 +144,7 @@ export const updateUsuario = (id, nuevosCampos) =>
           mostrarMensaje("Post Guardado", "success");
         });
       }
-    
+      
       export function subirArchivo(file) {
       const storageRef = ref(storage, "post/" + v4());
       return uploadBytes(storageRef, file)
@@ -146,7 +155,7 @@ export const updateUsuario = (id, nuevosCampos) =>
           return url;
         });
       }
-  
+      
       //Actualizar Post
       export const updatePost = (id, nuevosCampos) =>
       updateDoc(doc(db, "post", id), nuevosCampos);

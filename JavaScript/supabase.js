@@ -1,11 +1,7 @@
-
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { createClient } from './node_modules/@supabase/supabase-js'
 
 const supabaseUrl = 'https://ldljiqpbghfmvftbkqtf.supabase.co'
 const supabaseKey = process.env.SUPABASE_KEY
-export const supabase = createClient(supabaseUrl, supabaseKey)
+const supabase = createClient(supabaseUrl, supabaseKey)
 
-const channel = supabase.channel('test')
-
-channel.on('broadcast', { event: 'supa' }, (payload) => console.log(payload))
-  .subscribe()
+console.log('supabase')
