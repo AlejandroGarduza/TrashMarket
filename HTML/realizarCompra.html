@@ -7,6 +7,8 @@
     <title>Trash Market</title>
     <link href="../css/estilos.css" rel="stylesheet" />
     <link href="../css/vista-usuario.css" rel="stylesheet"/>
+
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
     
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
@@ -24,7 +26,31 @@
       crossorigin="anonymous"
     ></script>
     <script type="module" src="../JavaScript/main.js"></script>
-    <script type="module" src="../JavaScript/vistaPostVenta.js"></script>
+    <script type="module" src="../JavaScript/realizarCompra.js"></script>
+
+    <script>
+      function realizarPago() {
+        // Crea un objeto de preferencia
+        var preference = {
+          items: [
+            {
+              title: 'Producto de ejemplo',
+              unit_price: 100,
+              quantity: 1
+            }
+          ]
+        };
+    
+        // Inicializa el SDK de MercadoPago
+        window.Mercadopago.setPublishableKey('TEST-8233478592533435-042400-01492d02dd1efee60e1a60a4f5fca5e5-198871915');
+    
+        // Crea la preferencia de pago
+        window.Mercadopago.createPreference(preference, function(response) {
+          console.log(response);
+        });
+      }
+    </script>
+
   </head>
 
   <body>
@@ -230,8 +256,12 @@
     <div class="row">
         
         <div id="datos-postVenta">
-   
+
+          
+             
     </div>
+
+    
     
 
     
