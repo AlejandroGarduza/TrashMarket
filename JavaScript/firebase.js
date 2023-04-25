@@ -189,3 +189,21 @@ export const updateUsuario = (id, nuevosCampos) =>
       //Actualizar PostVenta
       export const updatePostVenta = (id, nuevosCampos) =>
       updateDoc(doc(db, "ventas", id), nuevosCampos);
+
+
+      //Guardar Compra
+      export const compraRef = collection(db, "compras");
+      export const guardarCompra = (venta, cantidad, total, fecha, refPago, vendedor, comprador) =>{
+        addDoc(collection(db, "compras"),{
+          venta: venta,
+          cantidad: cantidad,
+          total: total,
+          fecha: fecha,
+          refPago: refPago,
+          vendedor: vendedor,
+          comprador: comprador
+        }).then(()=>{
+          mostrarMensaje("Compra Realizada con Exito", "success");
+        });
+      }
+

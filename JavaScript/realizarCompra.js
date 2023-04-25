@@ -2,11 +2,25 @@ import {
     getDocs,
     where,
     query,
-    postVentaRef} from './firebase.js';
+    postVentaRef,
+    guardarCompra} from './firebase.js';
+
+import {v4} from "https://jspm.dev/uuid";
+
+import{mostrarMensaje} from './mensajeError.js';
 
     let id = "";
     let inventarioString = "";
-    let inventarioInt = 0;
+    let inventarioInt = 0; 
+    let precio = 0;
+    let venta;
+    let total;
+    let cantidad;
+    let fecha;
+    let refPago;
+    let vendedor;
+    let comprador = "" + localStorage.getItem("correo");
+   
     
     const datos  = document.getElementById("datos-postVenta");
 
@@ -32,6 +46,7 @@ import {
             console.log(doc.data());
             console.log(datos);
             mediaDB = postVenta.url;
+            precio = postVenta.precio;
 
             inventarioString = postVenta.cantidad;
             inventarioInt = parseInt(inventarioString);
@@ -63,7 +78,7 @@ import {
             <button id="incrementar" style="width: 40px; display: inline-block;">+</button></div>
 
             <div>
-              <button id="comprar" style="margin-left: 1380px;">Comprar</button>
+              <button id="comprar" data-id="${doc.id}" data-vendedor="${postVenta.vendedor}" style="margin-left: 1380px;">Comprar</button>
             </div>
             <br><br>
             </div>
@@ -114,12 +129,20 @@ import {
         //Boton de comprar
         const comprar = document.getElementById("comprar");
 
-        comprar.addEventListener("click", () => {
+        comprar.addEventListener("click",({ target: { dataset } }) => {
             if (contador > 0) {
-                realizarPago();
+                
+                venta = dataset.id;
+                cantidad = contador;
+                total = precio * cantidad;
+                fecha = new Date();
+                refPago = v4();
+                vendedor = dataset.vendedor;
+
+                guardarCompra(venta, cantidad, total, fecha, refPago, vendedor, comprador);
             }
             else {
-                alert("No ha seleccionado ninguna cantidad");
+                mostrarMensaje("por favor seleccione una cantidad valida", "error");
             }
         }
         );

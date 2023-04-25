@@ -10,7 +10,8 @@ console.log('Usuario: '+ user)
 const correoID = user.split('@')[0];
 const correoIDsinPuntos = correoID.replace(/\./g, '');
 console.log(correoIDsinPuntos)
-const conversationId = [correoIDsinPuntos, recipient].sort().join('-');
+//const conversationId = [correoIDsinPuntos, recipient].sort().join('-');
+const conversationId = "Prueba"
 console.log(conversationId)
 
 const dbRef = ref(realtimeDB)
