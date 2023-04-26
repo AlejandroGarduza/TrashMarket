@@ -2,15 +2,17 @@ import { realtimeDB} from "./firebase.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-auth.js";
 import {onValue, set, ref, child } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-database.js";
 
-// Obtener el usuario actual
-const auth = getAuth();
+// Crear id de conversación
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
 const user = ''+localStorage.getItem('correo');
-const recipient = 'marioo189';
+const recipient = ''+urlParams.get('id');
 console.log('Usuario: '+ user)
 const correoID = user.split('@')[0];
 const correoIDsinPuntos = correoID.replace(/\./g, '');
 console.log(correoIDsinPuntos)
-const conversationId = [correoIDsinPuntos, recipient].sort().join('-');
+const conversationId = 'Prueba'
+//const conversationId = [recipient, correoID].sort().join('-');
 console.log(conversationId)
 
 const dbRef = ref(realtimeDB)
