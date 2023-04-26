@@ -3,7 +3,8 @@ import {
     where,
     query,
     postVentaRef,
-    guardarCompra} from './firebase.js';
+    guardarCompra,
+    updatePostVenta} from './firebase.js';
 
 import {v4} from "https://jspm.dev/uuid";
 
@@ -140,6 +141,17 @@ import{mostrarMensaje} from './mensajeError.js';
                 vendedor = dataset.vendedor;
 
                 guardarCompra(venta, cantidad, total, fecha, refPago, vendedor, comprador);
+                
+
+                //Actualizar inventario
+                inventarioInt = inventarioInt - cantidad;
+                updatePostVenta(venta, {cantidad: inventarioInt});
+
+                setTimeout(function() {
+                  window.location.replace(`checkout.html?id=${refPago}`);
+                }, 2500);
+
+                //window.location.replace(`checkout.html?id=${refPago}`);
             }
             else {
                 mostrarMensaje("por favor seleccione una cantidad valida", "error");
@@ -148,32 +160,5 @@ import{mostrarMensaje} from './mensajeError.js';
         );
 
 
-        function realizarPago() {
-            console.log("realizar pago");
-          
-            // Crea un objeto de preferencia
-            var preference = {
-              items: [
-                {
-                  title: 'Producto de ejemplo',
-                  unit_price: 100,
-                  quantity: 1
-                }
-              ]
-            };
-          
-            // Verifica si la librería de MercadoPago está cargada
-            if (typeof window.Mercadopago !== 'undefined') {
-              // Inicializa el SDK de MercadoPago
-              window.Mercadopago.setPublishableKey('TEST-8233478592533435-042400-01492d02dd1efee60e1a60a4f5fca5e5-198871915');
-          
-              // Crea la preferencia de pago
-              window.Mercadopago.createPreference(preference, function(response) {
-                console.log(response);
-              });
-            } else {
-              // Si la librería de MercadoPago no está cargada, muestra un mensaje de error
-              alert('La librería de MercadoPago no se ha cargado correctamente.');
-            }
-          }
+        
     });
