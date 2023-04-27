@@ -6,6 +6,10 @@ import {loginCheck} from './loginCheck.js'
 import './logout.js'
 //import './registro.js'
 
+const divTienda = document.getElementById('tienda')
+const divComunidad = document.getElementById('comunidad')
+const divPuntos = document.getElementById('puntosInt')
+
 onAuthStateChanged(auth, async (user) => {
     if(user){
         loginCheck(user)
@@ -19,4 +23,16 @@ document.getElementById('search-form').addEventListener('submit', function(e) {
     var searchTerm = document.getElementsByName('search')[0].value; // Obtiene el término de búsqueda
     window.location.href = 'resultados-busqueda.html?id=' + searchTerm; // Redirige a la página de resultados de búsqueda con los parámetros de búsqueda
   });
+
+  divComunidad.addEventListener('click', () => {
+    window.location.replace('comunidad.html');
+});
+
+divTienda.addEventListener('click', () => {
+    window.location.replace(`tienda.html`);
+});
+
+divPuntos.addEventListener('click', () => {
+    window.location.replace(`puntosInt.html`);
+});
   

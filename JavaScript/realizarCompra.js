@@ -32,7 +32,7 @@ import{mostrarMensaje} from './mensajeError.js';
     window.addEventListener("DOMContentLoaded", async () => {
         const consultaPostVenta = query(
             postVentaRef,
-            where("titulo", "==", "Botella Aplanada (Derretida)")
+            where("titulo", "==", tituloPostVenta)
         );
         const querySnapshot = await getDocs(consultaPostVenta);
       
@@ -54,31 +54,31 @@ import{mostrarMensaje} from './mensajeError.js';
             html += `
             
             <div class="datosPostVenta">
-            <label class="editable" style="margin-left: 40px; margin-top: 5px; font-size: 50px;" for="titulo">${postVenta.titulo}</label>
+            <label class="editable" for="titulo">${postVenta.titulo}</label>
             <br><br>
       
-            <div id="asignarImg" style="display: flex; justify-content: center; align-items: center;"></div>
+            <div id="asignarImg"></div>
       
             <br><br>
       
-            <label class="editable" style="font-size: 37px; margin-left: 40px; margin-right: 40px; text-align: justify;" for="price">$${postVenta.precio} mxn</label>
+            <label class="editable" for="price">$${postVenta.precio} mxn</label>
             <br><br>
       
-            <label class="editable" style="margin-left: 1300px; margin-right: 40px; text-align: justify;" for="cantidad">${postVenta.cantidad} disponibles</label>
+            <label class="editable" for="cantidad">${postVenta.cantidad} disponibles</label>
       
               <br/><br/>
-              <p style="margin-left: 40px;">Descripcion</p>
-            <label class="editableTF" style="margin-left: 40px; margin-right: 40px; text-align: justify;" for="descripcion">${postVenta.descripcion}</label>
+              <p>Descripcion</p>
+            <label class="editableTF">${postVenta.descripcion}</label>
             
             <br><br>
 
-            <label style="margin-left: 40px;">Seleccione la cantidad que desea</label>
-            <div><button id="disminuir" style="width: 40px; display: inline-block; margin-left: 80px;">-</button>
-              <label>  </label> <label id="contador-Cantidad" style="display: inline-block;">0</label> <label>  </label>
-            <button id="incrementar" style="width: 40px; display: inline-block;">+</button></div>
+            <label>Seleccione la cantidad que desea</label>
+            <div><button id="disminuir">-</button>
+              <label>  </label> <label id="contador-Cantidad">0</label> <label>  </label>
+            <button id="incrementar">+</button></div>
 
             <div>
-              <button id="comprar" data-id="${doc.id}" data-vendedor="${postVenta.vendedor}" style="margin-left: 1380px;">Comprar</button>
+              <button id="comprar" class="btn-comprar" data-id="${doc.id}" data-vendedor="${postVenta.vendedor}">Comprar</button>
             </div>
             <br><br>
             </div>
@@ -147,7 +147,7 @@ import{mostrarMensaje} from './mensajeError.js';
         }
         );
 
-
+        /** 
         function realizarPago() {
             console.log("realizar pago");
           
@@ -176,4 +176,6 @@ import{mostrarMensaje} from './mensajeError.js';
               alert('La librería de MercadoPago no se ha cargado correctamente.');
             }
           }
+          */
     });
+    
