@@ -43,10 +43,10 @@ import {
       
             <br><br>
       
-            <label class="editable" style="font-size: 37px; margin-left: 40px; margin-right: 40px; text-align: justify;" for="price">$${postVenta.precio} mxn</label>
+            <label style="font-size: 37px; margin-left: 40px;  text-align: justify;">$</label> <label class="editable" style="font-size: 37px; text-align: justify;" for="price">${postVenta.precio}</label> <label style="font-size: 37px; text-align: justify;"> mxn</label>
             <br><br>
       
-            <label class="editable" style="margin-left: 1300px; margin-right: 40px; text-align: justify;" for="cantidad">${postVenta.cantidad} disponibles</label>
+            <label class="editable" style="margin-left: 1300px; text-align: justify;" for="cantidad">${postVenta.cantidad}</label> <label> disponibles</label>
       
               <br/><br/>
               <p style="margin-left: 40px;">Descripcion</p>
@@ -60,8 +60,12 @@ import {
             <button class="btn-guardar" type="submit" style="display:none;">Guardar cambios</button>
             </div>
 
+          <div>
+            <button class="btn-conversacion" data-id="${doc.id}">Iniciar convesación</button>         
+          </div>
+
         
-            `;
+            `;             
       });
 
       
@@ -79,6 +83,16 @@ import {
             console.log(dataset.id);
             });
         });
+        
+        const btnConversacion = datos.querySelectorAll('.btn-conversacion');
+
+        btnConversacion.forEach((btn) =>{
+          btn.addEventListener('click',({ target: { dataset } }) => {
+            window.location.replace(`chat.html?id=${dataset.id}`);
+          }); 
+        })
+        
+        
 
         //continuación????
 
@@ -173,7 +187,7 @@ import {
         titulo: nuevoTitulo,
         precio: nuevoPrecio,
         cantidad: nuevaCantidad,
-        descipcion: nuevaDescripcion
+        descripcion: nuevaDescripcion
       });
   
       // volver a mostrar los labels con los nuevos valores

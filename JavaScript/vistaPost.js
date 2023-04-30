@@ -51,9 +51,6 @@ import {
           <button class="btn-guardar" type="submit" style="display:none;">Guardar cambios</button>
           </div>
 
-
-
-          
               `;
         });
         titulo.innerHTML = html;
@@ -94,6 +91,7 @@ import {
           id =  e.target.dataset.id;
           console.log("Si llego a btnEditar")
       });
+
 
       const editableTA = titulo.querySelectorAll(".editableTF");
       editableTA.forEach((label) => {
@@ -167,6 +165,8 @@ import {
             e.target.style.display = 'none';
           }
         });
+
+
 
     });
   

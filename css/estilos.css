@@ -21,6 +21,14 @@ a:link, a:visited{
 
 }
 
+.divCategoria{
+    cursor: pointer;
+}
+
+.divCategoria:hover{
+   background-color: #a6f786;
+}
+
 .barraSuperior img{
     height: 70px;
     align-self: center;
