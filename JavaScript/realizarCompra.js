@@ -83,7 +83,6 @@ import{mostrarMensaje} from './mensajeError.js';
             </div>
             <br><br>
             </div>
-
         
             `;
       });   

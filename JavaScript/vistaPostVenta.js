@@ -203,6 +203,5 @@ import {
 
 
 
-    //Describir las entidades, cuales van a ser las entidades que se van a utilizar en el proyecto, que datos van a tener y que tipo de datos van a ser. (1 punto)
-    //Describir el esquema
-    //Clave-Valor
+    //Describir las entidades, cuales van a ser las entidades que se van a utilizar en el proyecto, que datos van a tener y que tipo de datos van a ser.
+    

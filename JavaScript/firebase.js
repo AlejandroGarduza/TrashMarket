@@ -62,7 +62,7 @@ const analytics = getAnalytics(app);
 
 export const realtimeDB = getDatabase();
 
-const db = getFirestore();
+export const db = getFirestore();
 
 export const storage = getStorage(app);
 

@@ -1,4 +1,11 @@
-import {compraRef, getDocs, query, where} from './firebase.js'
+import {db , compraRef, getDocs, query, where} from './firebase.js'
+
+import {
+    doc,
+    getDoc
+  } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-firestore.js";
+
+let consultaVenta;
 
 const ticket = document.getElementById("datos-ticket");
 
@@ -13,6 +20,16 @@ window.addEventListener("DOMContentLoaded", async () => {
       where("refPago", "==", refP)
       );
     const querySnapshot = await getDocs(consultaCompra);
+
+    
+
+
+
+   
+
+
+
+
     
 
   
@@ -25,6 +42,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       const datosTicket = doc.data();
       console.log(doc.data());
       console.log(datosTicket);
+      consultaVenta = datosTicket.venta;
 
       let idPostVenta = datosTicket.venta;
       //mediaDB = post.url;
@@ -48,6 +66,23 @@ window.addEventListener("DOMContentLoaded", async () => {
           `;
     });
     ticket.innerHTML = html;
+
+    //consulta por id
+    const docId = consultaVenta;
+    
+    const docRef = doc(db, 'ventas', docId);
+
+    
+
+    getDoc(docRef).then((doc) => {
+        if (doc.exists()) {
+          console.log('Datos del documento:', doc.data());
+        } else {
+          console.log('No se encontró el documento');
+        }
+      }).catch((error) => {
+        console.error('Error al obtener el documento:', error);
+      });
 
     //Cargar imagen desde la bd
     
