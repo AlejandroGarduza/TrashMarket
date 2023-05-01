@@ -83,6 +83,10 @@ import{mostrarMensaje} from './mensajeError.js';
             </div>
             <br><br>
             </div>
+
+            <div>
+            <button class="btn-conversacion" data-id="${doc.id}">Iniciar convesación</button>         
+          </div>
         
             `;
       });   
@@ -125,6 +129,14 @@ import{mostrarMensaje} from './mensajeError.js';
             }
             }
         );
+
+        const btnConversacion = datos.querySelectorAll('.btn-conversacion');
+
+        btnConversacion.forEach((btn) =>{
+          btn.addEventListener('click',({ target: { dataset } }) => {
+            window.location.replace(`chat.html?id=${dataset.id}`);
+          }); 
+        })
 
         //Boton de comprar
         const comprar = document.getElementById("comprar");

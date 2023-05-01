@@ -25,6 +25,8 @@ import {
   deleteDoc,
   doc,
   updateDoc,
+  orderBy,
+  limit
 } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-firestore.js";
 
 import {v4} from "https://jspm.dev/uuid";
@@ -99,7 +101,7 @@ export const getUsuarios = () => getDocs(collection(db, "usuarios"));
 
 export const usuariosRef = collection(db, "usuarios");
 
-export { query, where, getDocs };
+export { query, where, getDocs, orderBy, limit };
 
 export const onGetUsuario = (callback) =>
   onSnapshot(collection(db, "usuarios"), callback);

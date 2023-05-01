@@ -1,5 +1,6 @@
 import {postRef, getDocs} from './firebase.js'
 
+
 const publicacionesContenedor = document.getElementById('publicaciones-contenedor');
 
 // Obtén los documentos de la colección de publicaciones

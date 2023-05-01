@@ -5,7 +5,10 @@ import {
   usuariosRef,
   deleteUsuario,
   updateUsuario,
-  subirArchivo
+  subirArchivo,
+  postRef,
+  orderBy,
+  limit
 } from "./firebase.js";
 
 import { signOut } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-auth.js";
@@ -21,6 +24,8 @@ const perfilUsuario = document.getElementById("visualizar-usuario");
 const imagenPerfil = document.getElementById("imagen-perfil");
 
 const ultimasPublicacioesn = document.getElementById("articulos-recientes");
+
+const confirmDeleteModal = new bootstrap.Modal(document.querySelector('#confirm-delete-modal'));
 
 let urlImg = "";
 
@@ -86,20 +91,7 @@ correo = localStorage.getItem('correo')
           
           `;
         imagenPerfil.innerHTML = htmlImagen;
-        
-      
-        let hmtlUltimasPublicaciones = "";
-      
-        hmtlUltimasPublicaciones += `
-          <h1>Últimas publicaciones</h1>
-      
-          <div style="border: 5px; background-color: #EEEEEE;">
-          <p> Escoba </p>
-      
-          </div>
-          `;
-        ultimasPublicacioesn.innerHTML = hmtlUltimasPublicaciones;
-      
+              
         const taskForm = imagenPerfil.querySelector(".asignarImg"); //Actualizar Imagen
         console.log(imagenPerfil);
         console.log(taskForm);
@@ -129,12 +121,40 @@ correo = localStorage.getItem('correo')
 
             mostrarMensaje("Imagen actualizada correctamente","success");
             localStorage.removeItem('urlImagen')
-            
-            window.location.reload();
-
+            setTimeout(function() {
+              window.location.reload();
+            }, 2500);            
         });
-
     });
+    
+    const consultaVenta = query(postRef, where("autor", "==", correo), limit(3));
+    
+    const querySnapshotVenta = await getDocs(consultaVenta);
+
+    querySnapshotVenta.forEach((doc)=>{
+      console.log(doc.id, "=>", doc.data());
+      console.log(doc.id);
+      const post = doc.data();
+      console.log(doc.data());
+
+      let hmtlUltimasPublicaciones = "";
+      
+        hmtlUltimasPublicaciones += `
+          <h1>Últimas publicaciones</h1>
+      
+          <div ">
+            <div class="datosPost" style="margin-right: 20px;">
+              <p> ${post.titulo} </p>
+              <p> ${post.descripcion} </p>
+            </div>
+            <img src="${post.url}" style="border-radius: 100%; max-width: 150px;"/>
+          </div>
+          `;
+        ultimasPublicacioesn.innerHTML = hmtlUltimasPublicaciones;
+      
+    })
+
+    
     
 
 
@@ -144,16 +164,27 @@ correo = localStorage.getItem('correo')
 
   btnEliminar.forEach((btn) => {
     btn.addEventListener("click", async ({ target: { dataset } }) => {
-      deleteUsuario(dataset.id);
-      await signOut(auth)
-      window.location.replace('index.html');
-      console.log(dataset.id);
+      confirmDeleteModal.show();
+
+      const btnAceptar = document.getElementById('confirm-delete-btn');
+      btnAceptar.addEventListener('click', async () => {
+        deleteUsuario(dataset.id);
+        
+
+        await signOut(auth)
+        window.location.replace('index.html');
+        console.log(dataset.id);
+      })
+      
     });
   });
 
   const btnEditar = perfilUsuario.querySelectorAll(".btn-editar");
   btnEditar.forEach((btn) => {
     btn.addEventListener("click", (e) => {
+      
+      const btnEliminar = e.target.parentNode.querySelector('.btn-eliminar');
+      btnEliminar.style.display = 'none';
       
       e.target.style.display = 'none';
 
@@ -192,9 +223,11 @@ correo = localStorage.getItem('correo')
 
 
 perfilUsuario.addEventListener('click', (e) => {
-    const btnEliminar = e.target.parentNode.querySelector('.btn-eliminar');
-    btnEliminar.style.display = 'none';
+
+    
   if (e.target.classList.contains('btn-guardar')) {
+    
+    
     // obtener los nuevos valores de los inputs
     const inputs = e.target.parentNode.querySelectorAll('input');
     console.log(inputs)

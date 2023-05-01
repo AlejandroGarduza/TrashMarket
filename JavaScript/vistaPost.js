@@ -13,6 +13,11 @@ import {
     const cuerpo = document.getElementById("cuerpoPost");
     
     const media = document.getElementById("mediaPost");
+
+    const correo = ''+localStorage.getItem('correo')
+    
+    const confirmDeleteModal = new bootstrap.Modal(document.querySelector('#confirm-delete-modal'));
+    
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const tituloPost = urlParams.get('id');
@@ -42,26 +47,48 @@ import {
           
             <br/><br/>
           <label class="editableTF" style="margin-left: 40px; margin-right: 40px; text-align: justify;" for="descripcion">${post.descripcion}</label>
-          <button style="margin-left: 90%" class='btn-editar' data-id="${doc.id}"><i class="fa-solid fa-pencil"></i>editar</button>
             <br/><br/>
 
             <div id="asignarImg" style="display: flex; justify-content: center; align-items: center;"></div>
-          
-          <button class='btn-eliminar' data-id="${doc.id}"><i class="fa-solid fa-trash"></i>Eliminar Post</button>
-          <button class="btn-guardar" type="submit" style="display:none;">Guardar cambios</button>
+            
           </div>
 
               `;
+
+              if(correo === post.autor){
+                html += ` 
+                <button style="margin-left: 90%" class='btn-editar' data-id="${doc.id}"><i class="fa-solid fa-pencil"></i>editar</button>
+                <button class='btn-eliminar' data-id="${doc.id}"><i class="fa-solid fa-trash"></i>Eliminar Post</button>
+                <button class="btn-guardar" type="submit" style="display:none;">Guardar cambios</button> `
+              }
+
         });
         titulo.innerHTML = html;
+
+        
+
+        
 
         const btnEliminar = titulo.querySelectorAll(".btn-eliminar");
 
         btnEliminar.forEach((btn) => {
-            btn.addEventListener("click", ({ target: { dataset } }) => {
-            deletePost(dataset.id);
-            console.log(dataset.id);
-            });
+          btn.addEventListener("click", async ({ target: { dataset } }) => {
+            confirmDeleteModal.show();
+
+            const idPost = dataset.id;
+      
+            const btnAceptar = document.getElementById('confirm-delete-btn');
+            btnAceptar.addEventListener('click', async () => {
+              deletePost(idPost);
+              
+              setTimeout(function() {
+                console.log(idPost)
+                window.location.replace('index.html');
+                console.log(dataset.id);
+              }, 2500);
+             
+            })
+          })
         });
 
         const btnEditar = titulo.querySelectorAll(".btn-editar");

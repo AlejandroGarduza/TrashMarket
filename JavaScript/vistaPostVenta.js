@@ -60,9 +60,7 @@ import {
             <button class="btn-guardar" type="submit" style="display:none;">Guardar cambios</button>
             </div>
 
-          <div>
-            <button class="btn-conversacion" data-id="${doc.id}">Iniciar convesación</button>         
-          </div>
+          
 
         
             `;             
@@ -83,14 +81,7 @@ import {
             console.log(dataset.id);
             });
         });
-        
-        const btnConversacion = datos.querySelectorAll('.btn-conversacion');
-
-        btnConversacion.forEach((btn) =>{
-          btn.addEventListener('click',({ target: { dataset } }) => {
-            window.location.replace(`chat.html?id=${dataset.id}`);
-          }); 
-        })
+    
         
         
 
