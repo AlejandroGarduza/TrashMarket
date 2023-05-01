@@ -15,8 +15,8 @@ import {
     const media = document.getElementById("mediaPost");
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const tituloPost = urlParams.get('id')
-    console.log(urlParams)
+    const tituloPost = urlParams.get('id');
+    console.log(urlParams);
 
     window.addEventListener("DOMContentLoaded", async () => {
         const consultaPost = query(

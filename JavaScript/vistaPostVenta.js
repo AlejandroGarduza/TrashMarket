@@ -43,10 +43,10 @@ import {
       
             <br><br>
       
-            <label class="editable" style="font-size: 37px; margin-left: 40px; margin-right: 40px; text-align: justify;" for="price">$${postVenta.precio} mxn</label>
+            <label style="font-size: 37px; margin-left: 40px;  text-align: justify;">$</label> <label class="editable" style="font-size: 37px; text-align: justify;" for="price">${postVenta.precio}</label> <label style="font-size: 37px; text-align: justify;"> mxn</label>
             <br><br>
       
-            <label class="editable" style="margin-left: 1300px; margin-right: 40px; text-align: justify;" for="cantidad">${postVenta.cantidad} disponibles</label>
+            <label class="editable" style="margin-left: 1300px; text-align: justify;" for="cantidad">${postVenta.cantidad}</label> <label> disponibles</label>
       
               <br/><br/>
               <p style="margin-left: 40px;">Descripcion</p>
@@ -187,7 +187,7 @@ import {
         titulo: nuevoTitulo,
         precio: nuevoPrecio,
         cantidad: nuevaCantidad,
-        descipcion: nuevaDescripcion
+        descripcion: nuevaDescripcion
       });
   
       // volver a mostrar los labels con los nuevos valores
@@ -217,6 +217,5 @@ import {
 
 
 
-    //Describir las entidades, cuales van a ser las entidades que se van a utilizar en el proyecto, que datos van a tener y que tipo de datos van a ser. (1 punto)
-    //Describir el esquema
-    //Clave-Valor
+    //Describir las entidades, cuales van a ser las entidades que se van a utilizar en el proyecto, que datos van a tener y que tipo de datos van a ser.
+    

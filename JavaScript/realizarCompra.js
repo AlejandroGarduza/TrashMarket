@@ -3,7 +3,8 @@ import {
     where,
     query,
     postVentaRef,
-    guardarCompra} from './firebase.js';
+    guardarCompra,
+    updatePostVenta} from './firebase.js';
 
 import {v4} from "https://jspm.dev/uuid";
 
@@ -82,7 +83,6 @@ import{mostrarMensaje} from './mensajeError.js';
             </div>
             <br><br>
             </div>
-
         
             `;
       });   
@@ -140,6 +140,17 @@ import{mostrarMensaje} from './mensajeError.js';
                 vendedor = dataset.vendedor;
 
                 guardarCompra(venta, cantidad, total, fecha, refPago, vendedor, comprador);
+                
+
+                //Actualizar inventario
+                inventarioInt = inventarioInt - cantidad;
+                updatePostVenta(venta, {cantidad: inventarioInt});
+
+                setTimeout(function() {
+                  window.location.replace(`checkout.html?id=${refPago}`);
+                }, 2500);
+
+                //window.location.replace(`checkout.html?id=${refPago}`);
             }
             else {
                 mostrarMensaje("por favor seleccione una cantidad valida", "error");
@@ -177,5 +188,7 @@ import{mostrarMensaje} from './mensajeError.js';
             }
           }
           */
+
+        
     });
     
