@@ -129,7 +129,8 @@ correo = localStorage.getItem('correo')
 
             mostrarMensaje("Imagen actualizada correctamente","success");
             localStorage.removeItem('urlImagen')
-            //window.location.reload();
+            
+            window.location.reload();
 
         });
 
