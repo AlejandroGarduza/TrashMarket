@@ -50,44 +50,44 @@ correo = localStorage.getItem('correo')
     console.log(doc.data());
     console.log(perfilUsuario);
     html += `   
-            <div id="info-usuario">
-                <label for="nombre">Nombre:</label>
-                <label class='editable' for="nombre">${usuarios.nombre}</label> 
-                <label class='editable' for="apellido">${usuarios.apellido}</label>
-                <br/><br/>
-                <label>Correo:</label>
-                <label class='editable' for="correo">${usuarios.email}</label>
-                <br/><br/>
-                <label>Telefono:</label>
-                <label class='editable' for="telefono">${usuarios.telefono}</label>
-                <br/><br/>
-                <label for="direccion">Direccion:</label>   
-                <label class='editable' for="calle">${usuarios.calle}</label>
-                <label>#</label> 
-                <label class='editable' for="num_exterior">${usuarios.num_exterior}</label>
-                <label>C.P.</label>
-                <label class='editable' for="codigo_postal">${usuarios.codigo_postal}</label>                
-                <br/><br/>
-                <label>Descripción:</label>
-                <br/>
-                <label class='editable' for="descripcion">${usuarios.descripcion}</label>
-                <br/><br/>
-                <button class='btn-editar' data-id="${doc.id}"><i class="fa-solid fa-pencil"></i>Editar usuario</button>
-                <button class='btn-eliminar' data-id="${doc.id}"><i class="fa-solid fa-trash"></i>Eliminar usuario</button>
-                <button class="btn-guardar" type="submit" style="display:none;">Guardar cambios</button>
-            </div> 
+    <div id="info-usuario">
+      <label for="nombre">Nombre:</label>
+      <label class='editable' for="nombre">${usuarios.nombre}</label>
+      <label class='editable apellido' for="apellido">${usuarios.apellido}</label>
+      <br /><br />
+      <label>Correo:</label>
+      <label class='editable' for="correo">${usuarios.email}</label>
+      <br /><br />
+      <label>Telefono:</label>
+      <label class='editable' for="telefono">${usuarios.telefono}</label>
+      <br /><br />
+      <label for="direccion">Direccion:</label>
+      <label class='editable' for="calle">${usuarios.calle}</label>
+      <label class="caracter-especial">#</label>
+      <label class='editable' for="num_exterior">${usuarios.num_exterior}</label>
+      <label class="caracter-especial">C.P.</label>
+      <label class='editable' for="codigo_postal">${usuarios.codigo_postal}</label>
+      <br /><br />
+      <label>Descripción:</label>
+      <br />
+      <label class='editable' for="descripcion">${usuarios.descripcion}</label>
+      <br /><br />
+      <button class='btn-editar' data-id="${doc.id}"><i class="fa-solid fa-pencil"></i>Editar usuario</button>
+      <button class='btn-eliminar' data-id="${doc.id}"><i class="fa-solid fa-trash"></i>Eliminar usuario</button>
+      <button class="btn-guardar" type="submit" style="display:none;">Guardar cambios</button>
+   </div>
         
         `;
 
         let htmlImagen = "";
 
         htmlImagen += `
-          <img src="${usuarios.url}" class="imagen-perfil"  width="200px" height="200px" style="border-radius: 100%;"/>
-          <br/>
-          <form id="task-form" class="asignarImg">
-              <input class="col-7 " type="file" id="fileInput" required>  
-              <button class="btn-task-save" data-id="${doc.id}" id="btn-task-save" >Cambiar Imagen</button>
-          </form>
+        <img src="${usuarios.url}" class="imagen-perfil" width="200px" height="200px" style="border-radius: 100%;" />
+        <br />
+        <form id="task-form" class="asignarImg">
+          <input class="col-7" type="file" id="fileInput" required>
+          <button class="btn-task-save" data-id="${doc.id}" id="btn-task-save">Cambiar Imagen</button>
+        </form>
           
           `;
         imagenPerfil.innerHTML = htmlImagen;
@@ -140,14 +140,14 @@ correo = localStorage.getItem('correo')
       let hmtlUltimasPublicaciones = "";
       
         hmtlUltimasPublicaciones += `
-          <h1>Últimas publicaciones</h1>
-      
-          <div ">
+        <h1>Últimas publicaciones</h1>
+        <div class="col-md-12">
+          <div id="articulos-recientes">
             <div class="datosPost" style="margin-right: 20px;">
               <p> ${post.titulo} </p>
               <p> ${post.descripcion} </p>
             </div>
-            <img src="${post.url}" style="border-radius: 100%; max-width: 150px;"/>
+            <img src="${post.url}" style="border-radius: 100%; max-width: 150px;" />
           </div>
           `;
         ultimasPublicacioesn.innerHTML = hmtlUltimasPublicaciones;

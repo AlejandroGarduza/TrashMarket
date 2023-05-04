@@ -1,8 +1,7 @@
 .menu{
     background-color:  #79E550;
-    stroke: black;
-    border: 1px solid black;
-    height: 70px;
+    
+    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,7 +15,7 @@ a:link, a:visited{
 }
 .barraSuperior{
     background-color:  #79E550;
-    height: 70px;
+    height: 60px;
     text-align: center;
 
 }
@@ -36,7 +35,7 @@ a:link, a:visited{
 
 .search input[type=text]{
     
-    width:550px;
+    
     height:30px;
     border-radius:25px;
     border: none;
@@ -78,6 +77,8 @@ a:link, a:visited{
     width: 55px;
     border: none;
     margin-top: 5px;
+    margin-right: 10px;
+    margin-left: 10px;
     
   }
   
@@ -99,3 +100,14 @@ a:link, a:visited{
 .search button img{
     height: 25px;
 }
+
+@media (max-width: 768px) {
+    .divCategoria a {
+      display: none;
+    }
+    .search button{
+        display: none;
+    }
+  }
+  
+  
