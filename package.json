@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/Garduzaaa/proyectopino-main#readme",
   "dependencies": {
+    "brew": "^0.0.8",
     "gatsby": "^5.9.0"
   }
 }
