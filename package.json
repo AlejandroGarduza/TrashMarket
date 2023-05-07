@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/Garduzaaa/proyectopino-main/issues"
   },
-  "homepage": "https://github.com/Garduzaaa/proyectopino-main#readme"
+  "homepage": "https://github.com/Garduzaaa/proyectopino-main#readme",
+  "dependencies": {
+    "gatsby": "^5.9.0"
+  }
 }
