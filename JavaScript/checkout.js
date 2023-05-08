@@ -12,6 +12,7 @@ let urlIMG;
 const ticket = document.getElementById("datos-ticket");
 const nombreProducto = document.getElementById("nombrePorducto");
 const imgProducto = document.getElementById("imgProducto");
+const datosCompra = document.getElementById("datos-compra");
 
 
     const queryString = window.location.search;
@@ -28,6 +29,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 
     let html = "";
     let html2 = "";
+    let html3 = "";
     //let mediaDB = "";
         
     querySnapshot.forEach((doc) => {
@@ -47,12 +49,19 @@ window.addEventListener("DOMContentLoaded", async () => {
       //mediaDB = post.url;
 
       html += `
-      <label style="margin-left: 40px; margin-right: 40px; text-align: justify;">${"Cantidad: "+datosTicket.cantidad}</label>
-      <label style="margin-left: 40px; margin-right: 40px; text-align: justify;">${"Total: "+datosTicket.total}</label>
-      <label style="margin-left: 40px; margin-right: 40px; text-align: justify;">${"Fecha de Compra: "+fechaFormateada}</label>
-      <label style="margin-left: 40px; margin-right: 40px; text-align: justify;">${"Referencia de Pago: "+datosTicket.refPago}</label> `;
+      
+      <label class="cantidad-producto">${"Cantidad: "+datosTicket.cantidad}</label>
+      
+      <label class="total">${"Total: "+datosTicket.total}</label>
+      
+       `;
+
+      html2 += `<label class="fecha-compra">${"Fecha de Compra: "+new Date(datosTicket.fecha).toLocaleString()}</label>
+      
+      <label class="ref-pago">${"Referencia de Pago: "+datosTicket.refPago}</label>`;
     });
-    ticket.innerHTML = html;
+    ticket.innerHTML = html2;
+    datosCompra.innerHTML = html;
 
     //consulta por id
     const docId = consultaVenta;
@@ -66,28 +75,35 @@ window.addEventListener("DOMContentLoaded", async () => {
           console.log(doc.data().titulo);
           console.log('Datos del documento:', doc.data());
           nombreP = ""+doc.data().titulo;
+          console.log(nombreP)
           urlIMG = ""+doc.data().url;
+          html3 += `
+          <h1 class="titulo-principal">Compra Realizada Exitosamente</h1>
+          <hr>
+          <h3 class="titulo-resumen">Resumen del Pedido</h3>
+
+      <label class="nombre-producto">${nombreP}</label>
+      <br>
+
+      
+          `;
+          nombreProducto.innerHTML = html3;
+          //Mostrar imagen
+        let html4 = ` <hr> <img src="${urlIMG}" alt="" class="imgP">`;
+        imgProducto.innerHTML = html4;
         } else {
           console.log('No se encontró el documento');
         }
+        
       }).catch((error) => {
         console.error('Error al obtener el documento:', error);
       });
 
-      html2 += `
-      <h1 style="margin-left: 40px; margin-top: 5px; font-size: 50px;">Compra Realizada Exitosamente</h1>
-      <h3 style="margin-left: 40px; margin-top: 5px;">Resumen del Pedido</h3>
-
-      <label style="margin-left: 40px; margin-right: 40px; text-align: center;">${nombreP}</label>
-
       
-          `;
 
-        nombreProducto.innerHTML = html2;
+        
 
-        //Mostrar imagen
-        let html3 = ` <img src="${urlIMG}" alt="" style="width: 100px; margin-left: 40px; margin-right: 40px; text-align: justify;">`;
-        imgProducto.innerHTML = html3;
+        
 
 
 });

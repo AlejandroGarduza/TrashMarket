@@ -147,7 +147,7 @@ import{mostrarMensaje} from './mensajeError.js';
                 venta = dataset.id;
                 cantidad = contador;
                 total = precio * cantidad;
-                fecha = new Date();
+                fecha = Date.now()
                 refPago = v4();
                 vendedor = dataset.vendedor;
 
