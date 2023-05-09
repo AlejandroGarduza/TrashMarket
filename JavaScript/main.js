@@ -25,14 +25,14 @@ document.getElementById('search-form').addEventListener('submit', function(e) {
   });
 
   divComunidad.addEventListener('click', () => {
-    window.location.replace('comunidad.html');
+    window.location.replace('./comunidad.html');
 });
 
 divTienda.addEventListener('click', () => {
-    window.location.replace(`tienda.html`);
+    window.location.replace(`./tienda.html`);
 });
 
 divPuntos.addEventListener('click', () => {
-    window.location.replace(`puntosInt.html`);
+    window.location.replace(`./puntosInt.html`);
 });
   

@@ -18,7 +18,7 @@ loginForm.addEventListener('submit', async e => {
         const credenciales = await signInWithEmailAndPassword(auth,correo,password) 
         console.log(credenciales)
         mostrarMensaje("Bienvenido", "success")
-        window.location.replace('index.html');
+        window.location.replace('../index.html');
         
 
     }catch(error){
