@@ -66,6 +66,8 @@ getDocs(post).then((querySnapshot) => {
   
       publicacionDiv.addEventListener('click', () => {
           window.location.replace(`visualizarPost.html?id=${docData.titulo}`);
+
+          
       });
     });
   }).catch((error) => {
