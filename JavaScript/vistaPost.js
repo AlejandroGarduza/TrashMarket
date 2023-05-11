@@ -94,7 +94,7 @@ import {
               
               setTimeout(function() {
                 console.log(idPost)
-                window.location.replace('index.html');
+                window.location.replace('../index.html');
                 console.log(dataset.id);
               }, 2500);
              

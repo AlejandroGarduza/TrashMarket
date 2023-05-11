@@ -5,7 +5,7 @@ const urlParams = new URLSearchParams(queryString);
 const searchTerm = urlParams.get('id')
 
 // Realiza una consulta donde el campo "nombre" contenga la subcadena "searchTerm"
-const q = query(usuariosRef, where("nombre_completo", ">=", searchTerm ), where("nombre_completo", "<=", searchTerm + "\uf8ff"));
+const q = query(usuariosRef, where("nombre", ">=", searchTerm ), where("nombre", "<=", searchTerm + "\uf8ff"));
 const post = query(postRef, where("titulo", ">=", searchTerm), where("titulo", "<=", searchTerm + "\uf8ff")); 
 
 const busquedas = document.getElementById('resultados-busqueda')
