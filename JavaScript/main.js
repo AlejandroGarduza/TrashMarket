@@ -21,7 +21,11 @@ onAuthStateChanged(auth, async (user) => {
 document.getElementById('search-form').addEventListener('submit', function(e) {
     e.preventDefault(); // Evita que el formulario se envíe
     var searchTerm = document.getElementsByName('search')[0].value; // Obtiene el término de búsqueda
-    window.location.href = 'resultados-busqueda.html?id=' + searchTerm; // Redirige a la página de resultados de búsqueda con los parámetros de búsqueda
+    const currentPath = window.location.pathname;
+          console.log(currentPath);
+          const newPath = currentPath.includes('index.html') ? `./HTML/resultados-busqueda.html?id=${searchTerm}` : `./resultados-busqueda.html?id=${searchTerm}`;
+         // window.location.replace(newPath);
+        window.location.href = newPath;
   });
 
   divComunidad.addEventListener('click', () => {
