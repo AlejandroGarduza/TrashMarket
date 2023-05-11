@@ -214,34 +214,36 @@
       </div>
     </div>
 
-      <div class="container">
-        <form id="task-form">
-            <div class="row">
-                
-                <label for="title">Titulo:</label>
-                <input type="text" placeholder="Por favor escriba el titulo del post" id="task-title" required>
-            </div>
-
-            <div class="row">
-                <label for="description">Descripción:</label>
-            <textarea id="task-description" cols="10" rows="10" required></textarea>
-            </div>
-
-            <div>
-                <br>
-                <label >Imagen:</label>
-                <br>
-                    <input class="col-7 " type="file" id="fileInput" required>
-                    <br>
-                    <!--<button class="btn btn-primary btn-lg align-items-right float-right" id="btn-task-save" onclick="uploadFile()">Guardar</button>-->
-                    <button class="btn btn-primary btn-lg btn-guardar" id="btn-task-save" >Guardar</button>
-
-              </div>
-              
-        </form>
-      </div>
-
+    <div class="container">
+      <form id="task-form">
+          <div class="row">
+              <label for="title">Título:</label>
+              <input type="text" placeholder="Por favor, escriba el título del post" id="task-title" required>
+          </div>
+  
+          <div class="row">
+              <label for="description">Descripción:</label>
+              <textarea id="task-description" cols="10" rows="10" required></textarea>
+          </div>
+  
+          <div>
+              <br>
+              <label>Imagen:</label>
+              <br>
+              <input class="col-7" type="file" id="fileInput" required>
+              <br>
+  
+              <label>Video:</label>
+              <br>
+              <button class="btn btn-primary btn-lg btn-insertar-video" id="btn-insert-video">Insertar Video</button>
+              <input type="text" id="video-url-input" style="display: none;" placeholder="Inserte el enlace del video">
+  
+              <br>
+              <button class="btn btn-primary btn-lg btn-guardar" id="btn-task-save">Guardar</button>
+          </div>
+      </form>
   </div>
+  
 
       <script type="module" src="../JavaScript/crearPost.js"></script>
       <script type="module" src="../JavaScript/main.js"></script>

@@ -25,14 +25,21 @@ document.getElementById('search-form').addEventListener('submit', function(e) {
   });
 
   divComunidad.addEventListener('click', () => {
-    window.location.replace('./comunidad.html');
+    const currentPath = window.location.pathname;
+    const newPath = currentPath.includes('index.html') ? './HTML/comunidad.html' : './comunidad.html';
+    window.location.replace(newPath);
 });
 
 divTienda.addEventListener('click', () => {
-    window.location.replace(`./tienda.html`);
+    const currentPath = window.location.pathname;
+    const newPath = currentPath.includes('index.html') ? './HTML/tienda.html' : './tienda.html';
+    window.location.replace(newPath);
 });
 
 divPuntos.addEventListener('click', () => {
-    window.location.replace(`./puntosInt.html`);
+    const currentPath = window.location.pathname;
+    const newPath = currentPath.includes('index.html') ? './HTML/puntosInt.html' : './puntosInt.html';
+    window.location.replace(newPath);
 });
+
   

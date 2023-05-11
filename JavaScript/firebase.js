@@ -136,11 +136,12 @@ export const updateUsuario = (id, nuevosCampos) =>
       export const deletePost = id => deleteDoc(doc(db,'post',id));
 
       //Crear post
-      export const guardarPost = (title, description, url, autor) =>{
+      export const guardarPost = (title, description, url, video, autor) =>{
         addDoc(collection(db, "post"),{
           titulo: title,
           descripcion: description,
           url : url,
+          video : video,
           autor : autor
         }).then(()=>{
           mostrarMensaje("Post Guardado", "success");

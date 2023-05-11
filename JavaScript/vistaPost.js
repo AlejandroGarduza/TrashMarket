@@ -18,6 +18,11 @@ import {
     
     const confirmDeleteModal = new bootstrap.Modal(document.querySelector('#confirm-delete-modal'));
     
+    const tag = document.createElement('script');
+                tag.src = 'https://www.youtube.com/iframe_api';
+                const firstScriptTag = document.getElementsByTagName('script')[0];
+                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
+
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const tituloPost = urlParams.get('id');
@@ -53,7 +58,17 @@ import {
             
           </div>
 
+          
+
               `;
+
+              if(post.video != null){
+                
+                html += ` 
+                <iframe width="560" height="315" src="${post.video}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                `
+               console.log('video') 
+              }
 
               if(correo === post.autor){
                 html += ` 
@@ -63,11 +78,7 @@ import {
               }
 
         });
-        titulo.innerHTML = html;
-
-        
-
-        
+        titulo.innerHTML = html
 
         const btnEliminar = titulo.querySelectorAll(".btn-eliminar");
 
@@ -90,6 +101,7 @@ import {
             })
           })
         });
+
 
         const btnEditar = titulo.querySelectorAll(".btn-editar");
         btnEditar.forEach((btn) => {
