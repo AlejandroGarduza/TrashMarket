@@ -17,12 +17,7 @@ import {
     const correo = ''+localStorage.getItem('correo')
     
     const confirmDeleteModal = new bootstrap.Modal(document.querySelector('#confirm-delete-modal'));
-    
-    const tag = document.createElement('script');
-                tag.src = 'https://www.youtube.com/iframe_api';
-                const firstScriptTag = document.getElementsByTagName('script')[0];
-                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
-
+  
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const tituloPost = urlParams.get('id');
@@ -47,7 +42,7 @@ import {
           mediaDB = post.url;
 
           html += `
-              <div class="datosPost">
+              
           <label class="editable" style="margin-left: 40px; margin-top: 5px; font-size: 50px;" for="titulo">${post.titulo}</label>
           
             <br/><br/>
@@ -56,9 +51,6 @@ import {
 
             <div id="asignarImg" style="display: flex; justify-content: center; align-items: center;"></div>
             
-          </div>
-
-          
 
               `;
 
@@ -69,6 +61,7 @@ import {
                 `
                console.log('video') 
               }
+              
 
               if(correo === post.autor){
                 html += ` 

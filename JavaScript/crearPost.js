@@ -20,6 +20,7 @@ btnInsertVideo.addEventListener('click', (event) => {
       video = true
   } else {
       videoUrlInput.style.display = 'none';
+      video = false;
   }
   
   event.preventDefault(); // Evitar que el evento de clic se propague al formulario
@@ -35,14 +36,17 @@ taskForm.addEventListener("submit", async (e) => {
   const url = await subirArchivo(taskForm["fileInput"].files[0]);
 
   if(video === true){
-    videoUrl = taskForm["video-url-input"];
+    const youtubeUrl = taskForm["video-url-input"].value;
+    console.log(youtubeUrl)
+    const youtubeId = youtubeUrl.split("=")[1];
+    videoUrl = "https://www.youtube.com/embed/"+youtubeId;
   }
 
   const autor = ''+localStorage.getItem('correo');
 
   console.log(videoUrl)
 
-  guardarPost(title.value, description.value, url, videoUrl.value, autor);
+  guardarPost(title.value, description.value, url, videoUrl, autor);
   taskForm.reset();
   setTimeout(function() {
     window.location.replace('../index.html');

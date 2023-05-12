@@ -33,6 +33,9 @@ const formulario = document.getElementById('registro-usuario');
                 saveUsuario(nombre.value, apellido.value, correo.value, tel.value, password.value, calle.value, cp.value,numeroCasa.value, "Escribe tu descripción aquí", urlPerfil)
                 formulario.reset()
                 mostrarMensaje("Bienvenido: " + nombre.value, "success")
+                setTimeout(function() {
+                    window.location.replace('../index.html');
+                  }, 2500); 
                }catch(error){
                 console.log(error.message)
                 console.log(error.code)
