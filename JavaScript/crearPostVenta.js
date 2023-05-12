@@ -18,5 +18,8 @@ taskForm.addEventListener("submit", async (e) => {
   const url = await subirArchivo(taskForm["fileInput"].files[0]);
 
   guardarVenta(title.value, category.value, price.value, amount.value, description.value, url, vendedor);
+  setTimeout(function() {
+    window.location.replace('../index.html');
+  }, 2500);
   taskForm.reset();
 });
