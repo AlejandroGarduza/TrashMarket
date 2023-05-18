@@ -4,6 +4,7 @@ import {
     query,
     postRef,
     deletePost,
+    usuariosRef,
     updatePost} from './firebase.js';
 
     let id = "";
@@ -28,10 +29,12 @@ import {
           postRef,
           where("titulo", "==", tituloPost)
         );
+        console.log(consultaPost)
         const querySnapshot = await getDocs(consultaPost);
       
         let html = "";
         let mediaDB = "";
+        let htmlUsuarios = "";
             
         querySnapshot.forEach((doc) => {
           console.log(doc.id, "=>", doc.data());
@@ -62,7 +65,6 @@ import {
                console.log('video') 
               }
               
-
               if(correo === post.autor){
                 html += ` 
                 <button style="margin-left: 90%" class='btn-editar' data-id="${doc.id}"><i class="fa-solid fa-pencil"></i>editar</button>
@@ -70,8 +72,50 @@ import {
                 <button class="btn-guardar" type="submit" style="display:none;">Guardar cambios</button> `
               }
 
+              const consultaUsuario = query(
+                usuariosRef,
+                where('email', '==', post.autor)
+                
+              );
+
+              console.log(post.autor)
+        
+              getDocs(consultaUsuario)
+                .then((querySnapshot) => {
+                  querySnapshot.forEach((doc) => {
+                    const docData = doc.data();
+                    const nombreAutor = docData.nombre;
+        
+                    htmlUsuarios+= `
+                    <h2>Datos del Autor</h2>
+                    <div class="col-md-12">
+                      <div id="perfil-autor" onclick="window.location.replace('vista-otro-usuario.html?id=${docData.email}')">
+                        <div class="datosAutor" style="margin-right: 20px;">
+                          <p> ${docData.nombre} ${docData.apellido} </p>
+                          <p> ${docData.descripcion} </p>
+                        </div>
+                        <img src="${docData.url}" style="border-radius: 100%; max-width: 150px;" />
+                      </div>
+                    </div>
+                    `
+                    localStorage.setItem('autor', htmlUsuarios)
+                    console.log('Si llego a la consulta de usuario')
+                    
+                    
+                  });
+                    
+                })
+                .catch((error) => {
+                  console.log(error);
+                });  
+                html += ""+localStorage.getItem('autor');
+                localStorage.removeItem('autor');
+                
+                
+
         });
         titulo.innerHTML = html
+
 
         const btnEliminar = titulo.querySelectorAll(".btn-eliminar");
 

@@ -1,5 +1,5 @@
 .menu{
-    background-color:  #79E550;
+    background-color:  #fff;
     
     height: 60px;
     display: flex;
@@ -14,7 +14,7 @@ a:link, a:visited{
     text-decoration: none;
 }
 .barraSuperior{
-    background-color:  #79E550;
+    background-color:  #fff;
     height: 60px;
     text-align: center;
 
@@ -25,7 +25,7 @@ a:link, a:visited{
 }
 
 .divCategoria:hover{
-   background-color: #a6f786;
+   background-color: #ddd;
 }
 
 .barraSuperior img{
@@ -38,7 +38,7 @@ a:link, a:visited{
     
     height:30px;
     border-radius:25px;
-    border: none;
+        
    
 }
 

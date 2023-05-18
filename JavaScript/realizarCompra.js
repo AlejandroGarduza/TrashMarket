@@ -4,7 +4,10 @@ import {
     query,
     postVentaRef,
     guardarCompra,
-    updatePostVenta} from './firebase.js';
+    updatePostVenta,
+    usuariosRef, 
+    auth} from './firebase.js';
+    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-auth.js";
 
 import {v4} from "https://jspm.dev/uuid";
 
@@ -39,6 +42,7 @@ import{mostrarMensaje} from './mensajeError.js';
       
         let html = "";
         let mediaDB = "";
+        let htmlUsuarios ="";
 
         querySnapshot.forEach((doc) => {
             console.log(doc.id, "=>", doc.data());
@@ -89,6 +93,41 @@ import{mostrarMensaje} from './mensajeError.js';
           </div>
         
             `;
+            const consultaUsuario = query(
+              usuariosRef,
+              where('email', '==', postVenta.vendedor)
+              
+            );
+            
+            getDocs(consultaUsuario)
+              .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                  const docData = doc.data();
+                  const nombreAutor = docData.nombre;
+      
+                  htmlUsuarios+= `
+                  <h2>Datos del Autor</h2>
+                  <div class="col-md-12">
+                    <div id="perfil-autor" onclick="window.location.replace('vista-otro-usuario.html?id=${docData.email}')">
+                      <div class="datosAutor" style="margin-right: 20px;">
+                        <p> ${docData.nombre} ${docData.apellido} </p>
+                        <p> ${docData.descripcion} </p>
+                      </div>
+                      <img src="${docData.url}" style="border-radius: 100%; max-width: 150px;" />
+                    </div>
+                  </div>
+                  `
+                  localStorage.setItem('vendedor', htmlUsuarios)
+                  console.log('Si llego a la consulta de usuario')
+                  
+                });
+                  
+              })
+              .catch((error) => {
+                console.log(error);
+              });  
+              html += ""+localStorage.getItem('vendedor');
+              localStorage.removeItem('vendedor');     
       });   
      
 
@@ -142,7 +181,10 @@ import{mostrarMensaje} from './mensajeError.js';
         const comprar = document.getElementById("comprar");
 
         comprar.addEventListener("click",({ target: { dataset } }) => {
-            if (contador > 0) {
+            
+          onAuthStateChanged(auth, async (user) => {
+            if(user){
+              if (contador > 0) {
                 
                 venta = dataset.id;
                 cantidad = contador;
@@ -162,44 +204,19 @@ import{mostrarMensaje} from './mensajeError.js';
                   window.location.replace(`checkout.html?id=${refPago}`);
                 }, 2500);
 
-                //window.location.replace(`checkout.html?id=${refPago}`);
+               
             }
             else {
                 mostrarMensaje("por favor seleccione una cantidad valida", "error");
             }
+            }else{
+                alert('Inicie sesión para realizar compras');
+            }
+        })
+          
+          
         }
         );
-
-        /** 
-        function realizarPago() {
-            console.log("realizar pago");
-          
-            // Crea un objeto de preferencia
-            var preference = {
-              items: [
-                {
-                  title: 'Producto de ejemplo',
-                  unit_price: 100,
-                  quantity: 1
-                }
-              ]
-            };
-          
-            // Verifica si la librería de MercadoPago está cargada
-            if (typeof window.Mercadopago !== 'undefined') {
-              // Inicializa el SDK de MercadoPago
-              window.Mercadopago.setPublishableKey('TEST-8233478592533435-042400-01492d02dd1efee60e1a60a4f5fca5e5-198871915');
-          
-              // Crea la preferencia de pago
-              window.Mercadopago.createPreference(preference, function(response) {
-                console.log(response);
-              });
-            } else {
-              // Si la librería de MercadoPago no está cargada, muestra un mensaje de error
-              alert('La librería de MercadoPago no se ha cargado correctamente.');
-            }
-          }
-          */
 
         
     });

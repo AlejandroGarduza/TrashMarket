@@ -276,7 +276,7 @@ perfilUsuario.addEventListener('click', (e) => {
     e.target.style.display = 'none';
     btnEliminar.style.display = 'inline-block';
 
-    mostrarMensaje("Datos actualizados correctamente", "s2uccess")
+    mostrarMensaje("Datos actualizados correctamente", "success")
   }
 });
 

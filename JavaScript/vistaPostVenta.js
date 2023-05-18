@@ -4,6 +4,7 @@ import {
     query,
     postVentaRef,
     deletePostVenta,
+    usuariosRef,
     updatePostVenta} from './firebase.js';
 
     let id = "";
@@ -63,7 +64,7 @@ import {
           
 
         
-            `;             
+            `;        
       });
 
       
