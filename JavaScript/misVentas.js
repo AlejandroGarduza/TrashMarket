@@ -2,10 +2,10 @@ import {
     getDocs,
     where,
     query,
-    compraRef} from './firebase.js';
-	const comprador = ''+localStorage.getItem('correo')
-    const publicacionesContenedor = document.getElementById('listaCompras');
-	const consultaVenta = query(compraRef, where("comprador", "==", comprador))
+    ventaRef} from './firebase.js';
+	const vendedor = ''+localStorage.getItem('correo')
+    const publicacionesContenedor = document.getElementById('ventas-contenedor');
+	const consultaVenta = query(ventaRef, where("vendedor", "==", vendedor))
 // Obtén los documentos de la colección de publicaciones
 getDocs(consultaVenta).then((querySnapshot) => {
 	querySnapshot.forEach((doc) => {
@@ -18,14 +18,20 @@ getDocs(consultaVenta).then((querySnapshot) => {
 
 		// Agrega el título y el extracto de la publicación al div
 		publicacionDiv.innerHTML = `
-				<h2>${docData.articulo}<h2>
-				<p>Referencia de pago: ${docData.refPago}<p>
-				<p>Fecha de realización: ${new Date(docData.fecha).toLocaleString()}</p>
+        <div class="d-flex flex-wrap align-items-center">
+            <div class="col-md-2">
+                <img class="img-perfil" src="${docData.url}">
+            </div>
+            <div class="col-md-10">
+                <h2>${docData.titulo}</h2>
+                <p>${docData.descripcion}</p>
+            </div>
+        </div>
 			`;
 
 		// Agrega un controlador de eventos al div para redirigir al usuario a la página de la publicación
 		publicacionDiv.addEventListener('click', () => {
-			window.location.replace(`checkout.html?id=${docData.refPago}`);
+			window.location.replace(`vistaPostVenta.html?id=${docData.titulo}`);
 		});
 
 

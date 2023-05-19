@@ -83,3 +83,17 @@
   .datosAutor:hover {
     background-color: #DDDDDD;
   }
+
+  .editable {
+    color: #333;
+  }
+  
+  .btn-editar, .btn-guardar, .btn-eliminar {
+    margin-top: 10px;
+    background-color: #0033CB;
+    color: #fff;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }

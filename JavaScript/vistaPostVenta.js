@@ -19,7 +19,7 @@ import {
     window.addEventListener("DOMContentLoaded", async () => {
         const consultaPostVenta = query(
             postVentaRef,
-            where("titulo", "==", "Botella Aplanada (Derretida)")
+            where("titulo", "==", tituloPostVenta)
         );
         const querySnapshot = await getDocs(consultaPostVenta);
       
@@ -37,22 +37,22 @@ import {
             html += `
             
             <div class="datosPostVenta">
-            <label class="editable" style="margin-left: 40px; margin-top: 5px; font-size: 50px;" for="titulo">${postVenta.titulo}</label>
+            <label class="editable"  margin-top: 5px; font-size: 50px;" for="titulo">${postVenta.titulo}</label>
             <br><br>
       
             <div id="asignarImg" style="display: flex; justify-content: center; align-items: center;"></div>
       
             <br><br>
       
-            <label style="font-size: 37px; margin-left: 40px;  text-align: justify;">$</label> <label class="editable" style="font-size: 37px; text-align: justify;" for="price">${postVenta.precio}</label> <label style="font-size: 37px; text-align: justify;"> mxn</label>
+            <label style="font-size: 37px;   text-align: justify;">$</label> <label class="editable" style="font-size: 37px; text-align: justify;" for="price">${postVenta.precio}</label> <label style="font-size: 37px; text-align: justify;"> mxn</label>
             <br><br>
       
-            <label class="editable" style="margin-left: 1300px; text-align: justify;" for="cantidad">${postVenta.cantidad}</label> <label> disponibles</label>
+            <label class="editable" text-align: justify;" for="cantidad">${postVenta.cantidad}</label> <label> disponibles</label>
       
               <br/><br/>
               <p style="margin-left: 40px;">Descripcion</p>
             <label class="editableTF" style="margin-left: 40px; margin-right: 40px; text-align: justify;" for="descripcion">${postVenta.descripcion}</label>
-            <button style="margin-left: 90%" class='btn-editar' data-id="${doc.id}"><i class="fa-solid fa-pencil"></i>editar</button>
+            <button class='btn-editar' data-id="${doc.id}"><i class="fa-solid fa-pencil"></i>editar</button>
               <br/><br/>
       
               

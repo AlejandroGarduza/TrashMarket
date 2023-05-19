@@ -26,204 +26,217 @@
   </head>
 
   <body>
-    <div class="row">
-      <!--Espacio del logo-->
-      <div class="col-3 barraSuperior">
-        <a href="../index.html">
-            <img
-            class="imgLogo"
-            src="../Imagenes/LogoRecortado.png"
-            alt="Trash Market Logo"
-          />
-        </a>
-      </div>
-      <!--Barra de búsqueda-->
-      <div class="col-7 barraSuperior">
-        <div class="search row">
-          <form action="#" id="search-form">
-            <input
-              type="text"
-              name="search"
-              placeholder=" ¿Qué esta búscando?"
-              class="col-11"
-            />
-            <button class="col-1" id="btn-busqueda">
-              <img src="../Imagenes/Lupa.png" />
-            </button>
-          </form>
+    <div class="container-fluid">
+
+    
+      <div class="row">
+        <!--Espacio del logo-->
+        <div class="col-sm-3 col-md-3 barraSuperior">
+          <a href="../index.html">
+            <img class="imgLogo" src="../Imagenes/LogoRecortado.png" alt="Trash Market Logo" />
+          </a>
         </div>
-      </div>
-      <!--Notificaciones -->
-      <div class="col-1 barraSuperior">
-        <div class="dropdown">
-          <button
-            class="notification-btn btn btn-secondary dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-            style="background-color: #0033cb; border-radius: 100%; border-color: #0033cb;"
-          >
-            <i class="fa fa-bell" style="color: white; font-size: 30px"></i>
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </div>
-      </div>
-      <!--Botón de perfil-->
-      <div class="col-1 barraSuperior" >
-        <div class="dropdown" id="logout">
-          <button
-            class="notification-btn btn btn-secondary dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-            style="background-color: #0033cb; border-radius: 100%; border-color: #0033cb;"
-          >
-            <i
-              class="fa-regular fa-user"
-              style="color: white; font-size: 30px"
-            ></i>
-          </button>
-          <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item" href="vista-usuario.html">
+        <!--Barra de búsqueda-->
+        <div class="col-sm-7 col-md-7 barraSuperior">
+          <div class="search row">
+            <form action="#" id="search-form">
+              <input type="text" name="search" placeholder=" ¿Qué está buscando?" class="col-11" />
+              <button id="btn-busqueda">
+                <img src="../Imagenes/Lupa.png" />
+              </button>
+            </form>
+          </div>
+        </div>  
+        <!--Notificaciones y perfil -->
+        <div class="col-md-2 col-sm-2 menu">
+          <div class="barraSuperior">
+            <div class="dropdown">
+              <button  class="notification-btn btn btn-secondary dropdown-toggle"  type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #0033cb; border-radius: 100%; border-color: #0033cb;">
+                <i class="fa fa-bell" style="color: white; font-size: 30px"></i>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </div>
+          </div>
+          <!--Botón de perfil-->
+          <div class=" barraSuperior" >
+            <div class="dropdown" id="logout">
+              <button
+                class="notification-btn btn btn-secondary dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style="background-color: #0033cb; border-radius: 100%; border-color: #0033cb;"
+              >
                 <i
                   class="fa-regular fa-user"
-                  style="color: black; font-size: 20px;"
-                >
-                  <p
-                    style="
-                      font-family: Verdana, Geneva, Tahoma, sans-serif;
-                      font-size: 20px;
-                      display: inline;
-                    "
-                  >
-                    Ver perfil
-                  </p>
-                </i>
-              </a>
-            </li>
-            <li><hr class="dropdown-divider"></li>
-            <li>
-              <a class="dropdown-item" href="CrearPostVenta.html">
-                <i
-                  class="fa-solid fa-arrow-right-arrow-left"
-                  style="color: black; font-size: 20px"
-                >
-                  <p
-                    style="
-                      font-family: Verdana, Geneva, Tahoma, sans-serif;
-                      font-size: 20px;
-                      display: inline;
-                    "
-                  >
-                    Vender
-                  </p>
-                </i>
-              </a>
-            </li>
-
-            <li><hr class="dropdown-divider"></li>
-            
-            <li>
-              <a class="dropdown-item" href="mis-chat.html">
-                <i
-                  class="fa-solid fa-arrow-right-arrow-left"
-                  style="color: black; font-size: 20px"
-                >
-                  <p
-                    style="
-                      font-family: Verdana, Geneva, Tahoma, sans-serif;
-                      font-size: 20px;
-                      display: inline;
-                    "
-                  >
-                    Vender
-                  </p>
-                </i>
-              </a>
-            </li>
-            
-            <li><hr class="dropdown-divider"></li>
-
-            <li>
-              <a class="dropdown-item" href="acercaDe.html">
-                <i
-                  class="fa-regular fa-circle-question"
-                  style="color: black; font-size: 20px"
-                >
-                  <p
-                    style="
-                      font-family: Verdana, Geneva, Tahoma, sans-serif;
-                      font-size: 20px;
-                      display: inline-block;
-                    "
-                  >
-                    Acerca de <br/> nosotros
-                  </p>
-                </i>
-              </a>
-            </li>
-
-            <li><hr class="dropdown-divider"></li>
-
-            <li><a class="dropdown-item" id="logout-user" href="#">
-                <i
-                  class="fa-solid fa-right-from-bracket"
-                  style="color: black; font-size: 20px"
-                >
-                  <p
-                    style="
-                      font-family: Verdana, Geneva, Tahoma, sans-serif;
-                      font-size: 20px;
-                      display: inline-block;
-                    "
-                  >
-                    Salir
-                  </p>
-                </i>
+                  style="color: white; font-size: 30px"
+                ></i>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="vista-usuario.html">
+                    <i
+                      class="fa-regular fa-user"
+                      style="color: black; font-size: 20px;"
+                    >
+                      <p
+                        style="
+                          font-family: Verdana, Geneva, Tahoma, sans-serif;
+                          font-size: 20px;
+                          display: inline;
+                        "
+                      >
+                        Ver perfil
+                      </p>
+                    </i>
+                  </a>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" href="CrearPostVenta.html">
+                    <i
+                      class="fa-solid fa-arrow-right-arrow-left"
+                      style="color: black; font-size: 20px"
+                    >
+                      <p
+                        style="
+                          font-family: Verdana, Geneva, Tahoma, sans-serif;
+                          font-size: 20px;
+                          display: inline;
+                        "
+                      >
+                        Vender
+                      </p>
+                    </i>
+                  </a>
+                </li>
+    
+                <li><hr class="dropdown-divider"></li>
                 
-            </a></li>
+                <li>
+                  <a class="dropdown-item" href="misCompras.html">
+                    <i
+                      class="fa-solid fa-cart-shopping"
+                      style="color: black; font-size: 20px"
+                    >
+                      <p
+                        style="
+                          font-family: Verdana, Geneva, Tahoma, sans-serif;
+                          font-size: 20px;
+                          display: inline;
+                        "
+                      >
+                        Mis compras
+                      </p>
+                    </i>
+                  </a>
+                </li>
+                
+                <li><hr class="dropdown-divider"></li>
+  
+                <li>
+                  <a class="dropdown-item" href="mis-ventas.html">
+                    <i
+                      class="fa-solid fa-money-bill"
+                      style="color: black; font-size: 20px"
+                    >
+                      <p
+                        style="
+                          font-family: Verdana, Geneva, Tahoma, sans-serif;
+                          font-size: 20px;
+                          display: inline;
+                        "
+                      >
+                        Mis Ventas
+                      </p>
+                    </i>
+                  </a>
+                </li>
+                
+                <li><hr class="dropdown-divider"></li>
+    
+                <li>
+                  <a class="dropdown-item" href="acercaDe.html">
+                    <i
+                      class="fa-regular fa-circle-question"
+                      style="color: black; font-size: 20px"
+                    >
+                      <p
+                        style="
+                          font-family: Verdana, Geneva, Tahoma, sans-serif;
+                          font-size: 20px;
+                          display: inline-block;
+                        "
+                      >
+                        Acerca de <br/> nosotros
+                      </p>
+                    </i>
+                  </a>
+                </li>
+    
+                <li><hr class="dropdown-divider"></li>
+    
+                <li><a class="dropdown-item" id="logout-user" href="#">
+                    <i
+                      class="fa-solid fa-right-from-bracket"
+                      style="color: black; font-size: 20px"
+                    >
+                      <p
+                        style="
+                          font-family: Verdana, Geneva, Tahoma, sans-serif;
+                          font-size: 20px;
+                          display: inline-block;
+                        "
+                      >
+                        Salir
+                      </p>
+                    </i>
+                    
+                </a></li>
+                
+              </ul>
+            </div>
+    
+            <div class="dropdown" id="log-in">
+              <button
+                class="notification-btn btn btn-secondary dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style="background-color: #0033cb; border-radius: 100%; border-color: #0033cb;"
+              >
+                <i class="fa-regular fa-user" style="color: white; font-size: 30px"></i>
+              </button>
+              <ul class="dropdown-menu">
+                
+                <li><a class="dropdown-item" href="login.html ">Inicia Sesión</a></li>
+              </ul>
+            </div>
             
-          </ul>
-        </div>
-
-        <div class="dropdown" id="log-in">
-          <button
-            class="notification-btn btn btn-secondary dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-            style="background-color: #0033cb; border-radius: 100%; border-color: #0033cb;"
-          >
-            <i class="fa-regular fa-user" style="color: white; font-size: 30px"></i>
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="login.html ">Inicia Sesión</a></li>
-          </ul>
+          </div>
+          
         </div>
         
       </div>
-      
-    </div>
-
-    <div class="row">
-      <div class="col-4 menu">
-        <i class="fa-solid fa-users" style="font-size: 40px"></i>
-        <a href="comunidad.html">Comunidad</a>
+  
+      <div class="row">
+        <div id="comunidad" class="divCategoria col-4 menu">
+          <i class="fa-solid fa-users" style="font-size: 40px"></i>
+          <a href="comunidad.html">Comunidad</a>
+        </div>
+        <div id="puntosInt" class="divCategoria col-4 menu">
+          <i class="fa-solid fa-map-location-dot" style="font-size: 40px"></i>
+          <a href="puntosInt.html">Puntos de interes</a>
+        </div>
+        <div id="tienda" class="divCategoria col-4   menu">
+          <i class="fa-solid fa-cart-shopping" style="font-size: 40px"></i>
+          <a href="tienda.html">Tienda en línea</a>
+        </div>
       </div>
-      <div class="col-4 menu">
-        <i class="fa-solid fa-map-location-dot" style="font-size: 40px"></i>
-        <a href="puntosInt.html">Puntos de interes</a>
-      </div>
-      <div class="col-4 menu">
-        <i class="fa-solid fa-cart-shopping" style="font-size: 40px"></i>
-        <a href="tienda.html">Tienda en línea</a>
-      </div>
-    </div>
 
     <div class="notification-container">
       <ul class="notification-list">
@@ -244,4 +257,5 @@
           </div>
         </div>
       </div>
+    </div>
     </div>

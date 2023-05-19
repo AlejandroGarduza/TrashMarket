@@ -23,6 +23,7 @@ import{mostrarMensaje} from './mensajeError.js';
     let fecha;
     let refPago;
     let vendedor;
+    let articulo;
     let comprador = "" + localStorage.getItem("correo");
    
     
@@ -83,7 +84,7 @@ import{mostrarMensaje} from './mensajeError.js';
             <button id="incrementar">+</button></div>
 
             <div>
-              <button id="comprar" class="btn-comprar" data-id="${doc.id}" data-vendedor="${postVenta.vendedor}">Comprar</button>
+              <button id="comprar" class="btn-comprar" data-id="${doc.id}" data-vendedor="${postVenta.vendedor}" data-articulo="${postVenta.titulo}">Comprar</button>
             </div>
             <br><br>
             </div>
@@ -194,8 +195,9 @@ import{mostrarMensaje} from './mensajeError.js';
                 fecha = Date.now()
                 refPago = v4();
                 vendedor = dataset.vendedor;
+                articulo = dataset.articulo;
 
-                guardarCompra(venta, cantidad, total, fecha, refPago, vendedor, comprador);
+                guardarCompra(venta, cantidad, total, fecha, refPago, vendedor, comprador, articulo);
                 
 
                 //Actualizar inventario
