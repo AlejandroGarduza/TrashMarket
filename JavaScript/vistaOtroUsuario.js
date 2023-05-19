@@ -3,6 +3,8 @@ import {
   where,
   query,
   usuariosRef,
+  postRef,
+  limit,
   deleteUsuario,
   updateUsuario,
   subirArchivo
@@ -65,30 +67,41 @@ window.addEventListener("DOMContentLoaded", async () => {
             </div> 
         
         `;
-
         let htmlImagen = "";
 
         htmlImagen += `
-          <img src="${usuarios.url}" class="imagen-perfil"  width="200px" height="200px" style="border-radius: 100%;"/>
-          
+        <img src="${usuarios.url}" class="imagen-perfil" width="200px" height="200px" style="border-radius: 100%;" />         
           `;
         imagenPerfil.innerHTML = htmlImagen;
-        
-      
-        let hmtlUltimasPublicaciones = "";
+
+    });
+
+    const consultaVenta = query(postRef, where("autor", "==", correo), limit(3));
+    
+    const querySnapshotVenta = await getDocs(consultaVenta);
+
+    querySnapshotVenta.forEach((doc)=>{
+      console.log(doc.id, "=>", doc.data());
+      console.log(doc.id);
+      const post = doc.data();
+      console.log(doc.data());
+
+      let hmtlUltimasPublicaciones = "";
       
         hmtlUltimasPublicaciones += `
-          <h1>Últimas publicaciones</h1>
-      
-          <div style="border: 5px; background-color: #EEEEEE;">
-          <p> Escoba </p>
-      
+        <h1>Últimas publicaciones</h1>
+        <div class="col-md-12">
+          <div id="articulos-recientes">
+            <div class="datosPost" style="margin-right: 20px;">
+              <p> ${post.titulo} </p>
+              <p> ${post.descripcion} </p>
+            </div>
+            <img src="${post.url}" style="border-radius: 100%; max-width: 150px;" />
           </div>
           `;
         ultimasPublicacioesn.innerHTML = hmtlUltimasPublicaciones;
       
-
-    });
+    })
 
   perfilUsuario.innerHTML = html;
 

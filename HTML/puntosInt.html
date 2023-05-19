@@ -41,33 +41,73 @@
           }
         });
       }
-
+    
       function mostrarMapa(latitud, longitud) {
         var mapa = new google.maps.Map(document.getElementById("mapa"), {
           center: { lat: latitud, lng: longitud },
           zoom: 12,
         });
-
+    
         var servicioDeLugares = new google.maps.places.PlacesService(mapa);
         servicioDeLugares.nearbySearch(
           {
             location: { lat: latitud, lng: longitud },
             radius: 10000,
-            type: ["chatarra"],
+            keyword: "centro chatarrero", // Filtro por palabra clave
           },
           function (results, status) {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
               for (var i = 0; i < results.length; i++) {
-                var marker = new google.maps.Marker({
-                  map: mapa,
-                  position: results[i].geometry.location,
-                });
+                crearMarcador(mapa, results[i]);
               }
             }
           }
         );
       }
+    
+      function crearMarcador(mapa, place) {
+        var marker = new google.maps.Marker({
+          map: mapa,
+          position: place.geometry.location,
+        });
+    
+        // Agregar evento clic al marcador
+        google.maps.event.addListener(marker, "click", function () {
+          // Obtener información detallada del lugar
+          var servicioDeLugares = new google.maps.places.PlacesService(mapa);
+          servicioDeLugares.getDetails(
+            { placeId: place.place_id },
+            function (placeResult, status) {
+              if (status === google.maps.places.PlacesServiceStatus.OK) {
+                // Crear ventana de información con detalles del lugar
+                var infowindow = new google.maps.InfoWindow({
+                  content: generarContenido(placeResult),
+                });
+                // Mostrar ventana de información en el mapa
+                infowindow.open(mapa, marker);
+              }
+            }
+          );
+        });
+      }
+    
+      function generarContenido(place) {
+        var content = "<strong>" + place.name + "</strong><br>";
+        if (place.formatted_address) {
+          content += place.formatted_address + "<br>";
+        }
+        if (place.formatted_phone_number) {
+          content += "Teléfono: " + place.formatted_phone_number + "<br>";
+        }
+        if (place.website) {
+          content +=
+            '<a href="' + place.website + '" target="_blank">Sitio web</a><br>';
+        }
+        return content;
+      }
     </script>
+    
+    
   </head>
 
   <body>
