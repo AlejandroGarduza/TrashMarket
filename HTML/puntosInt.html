@@ -349,4 +349,17 @@
       <div id="mapa" style="width: 100%; height: 500px"></div>
     </div>
   </body>
+
+  <script>
+    // Espera a que se cargue el documento
+    document.addEventListener('DOMContentLoaded', function () {
+      // Busca el elemento de entrada de texto del formulario
+      var input = document.getElementById('ciudad');
+      // Establece el valor del elemento de entrada de texto
+      input.value = 'coatza';
+      // Ejecuta la función de búsqueda
+      buscar();
+    });
+  </script>
+  
 </html>
