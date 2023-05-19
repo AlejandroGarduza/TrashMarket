@@ -4,6 +4,8 @@ window.addEventListener("DOMContentLoaded", () => {});
 
 const taskForm = document.getElementById("task-form");
 
+let url = "null";
+
 let videoUrl = "null";
 
 let video = false;
@@ -32,8 +34,10 @@ taskForm.addEventListener("submit", async (e) => {
 
   const title = taskForm["task-title"];
   const description = taskForm["task-description"];
-
-  const url = await subirArchivo(taskForm["fileInput"].files[0]);
+  if(taskForm["fileInput"].files[0] != null){
+       url = await subirArchivo(taskForm["fileInput"].files[0]);
+  }
+  
 
   if(video === true){
     const youtubeUrl = taskForm["video-url-input"].value;

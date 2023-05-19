@@ -31,13 +31,13 @@
   }
   
   .publicacion-venta .descripcion {
-    max-height: 60px; /* o cualquier otra altura que desees */
+    max-height: 60px; 
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;
   }
 
-  /* Estilos para la descripción */
+  
 .publicacion-venta p.descripcion {
     font-size: 16px;
     margin-bottom: 5px;

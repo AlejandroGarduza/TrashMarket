@@ -43,27 +43,37 @@ import {
           console.log(doc.data());
           console.log(titulo);
           mediaDB = post.url;
-
+          
           html += `
               
           <label class="editable" style="margin-left: 40px; margin-top: 5px; font-size: 50px;" for="titulo">${post.titulo}</label>
           
             <br/><br/>
           <label class="editableTF" style="margin-left: 40px; margin-right: 40px; text-align: justify;" for="descripcion">${post.descripcion}</label>
-            <br/><br/>
-
-            <div id="asignarImg" style="display: flex; justify-content: center; align-items: center;"></div>
-            
+            <br/><br/>            
 
               `;
 
-              if(post.video != null){
+              if(mediaDB != "null" ){
+                html += `
+                <div id="asignarImg" style="display: flex; justify-content: center; align-items: center;">
+                <img class="img-fluid" src="${mediaDB}"/>
+                <br/>
+              </div>
+                `
+              }
+
+              if(post.video != "null"){
                 
                 html += ` 
-                <iframe width="560" height="315" src="${post.video}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <div style="display: flex; justify-content: center;">
+                  <iframe width="560" height="315" src="${post.video}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+
                 `
                console.log('video') 
               }
+
               
               if(correo === post.autor){
                 html += ` 
@@ -188,18 +198,7 @@ import {
     });
   });
 
-        //Cargar imagen desde la bd
-        
-        let htmlImagen = "";
-        const selectImg = document.getElementById("asignarImg");
-        
-
-        htmlImagen += `
-            
-            <img class="img-fluid" src="${mediaDB}"/>
-            
-            `;
-        selectImg.innerHTML = htmlImagen;
+       
 
         titulo.addEventListener('click', (e) => {
           if (e.target.classList.contains('btn-guardar')) {
