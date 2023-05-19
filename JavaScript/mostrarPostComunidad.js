@@ -41,7 +41,7 @@ getDocs(postRef)
       }else{
           alert('Inicie sesión para agregar publicaciones');
       }
-  })
+    })
   })
   
 

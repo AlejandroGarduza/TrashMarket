@@ -14,7 +14,7 @@ getDocs(ventaRef).then((querySnapshot) => {
 
 		// Agrega el título y el extracto de la publicación al div
 		publicacionVentaDiv.innerHTML = `
-            <div>
+			<div>
                 <img class="img-perfil" src="${docData.url}">
             </div>
             <div>

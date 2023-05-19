@@ -107,15 +107,17 @@ import{mostrarMensaje} from './mensajeError.js';
       
                   htmlUsuarios+= `
                   <h2>Datos del Autor</h2>
-                  <div class="col-md-12">
-                    <div id="perfil-autor" onclick="window.location.replace('vista-otro-usuario.html?id=${docData.email}')">
-                      <div class="datosAutor" style="margin-right: 20px;">
-                        <p> ${docData.nombre} ${docData.apellido} </p>
-                        <p> ${docData.descripcion} </p>
+                    <div>
+                      <div id="perfil-autor" class="datosAutor d-flex flex-wrap align-items-center" onclick="window.location.replace('vista-otro-usuario.html?id=${docData.email}')">
+                        <div class="col-md-1" >
+                          <img src="${docData.url}" style="border-radius: 100%; max-width: 125px;" />
+                        </div>
+                        <div col-md-11" style="margin-left: 60px;">
+                          <p>${docData.nombre} ${docData.apellido}</p>
+                          <p>${docData.descripcion}</p>
+                        </div>
                       </div>
-                      <img src="${docData.url}" style="border-radius: 100%; max-width: 150px;" />
                     </div>
-                  </div>
                   `
                   localStorage.setItem('vendedor', htmlUsuarios)
                   console.log('Si llego a la consulta de usuario')
