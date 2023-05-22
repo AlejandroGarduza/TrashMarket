@@ -77,7 +77,7 @@ import {
               
               if(correo === post.autor){
                 html += ` 
-                <button style="margin-left: 90%" class='btn-editar' data-id="${doc.id}"><i class="fa-solid fa-pencil"></i>editar</button>
+                <button class='btn-editar' data-id="${doc.id}"><i class="fa-solid fa-pencil"></i>editar</button>
                 <button class='btn-eliminar' data-id="${doc.id}"><i class="fa-solid fa-trash"></i>Eliminar Post</button>
                 <button class="btn-guardar" type="submit" style="display:none;">Guardar cambios</button> `
               }

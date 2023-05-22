@@ -56,7 +56,7 @@ correo = localStorage.getItem('correo')
       <label class='editable apellido' for="apellido">${usuarios.apellido}</label>
       <br /><br />
       <label>Correo:</label>
-      <label class='editable' for="correo">${usuarios.email}</label>
+      <label  for="correo">${usuarios.email}</label>
       <br /><br />
       <label>Telefono:</label>
       <label class='editable' for="telefono">${usuarios.telefono}</label>
@@ -234,7 +234,6 @@ perfilUsuario.addEventListener('click', (e) => {
 
     const nombreInput = document.getElementById("nombre-input")
     const apellidoInput = document.getElementById('apellido-input');
-    const correoInput = document.getElementById('correo-input');
     const telefonoInput = document.getElementById('telefono-input');
     const calleInput = document.getElementById('calle-input');
     const numExteriorInput = document.getElementById('num_exterior-input');
@@ -243,7 +242,6 @@ perfilUsuario.addEventListener('click', (e) => {
 
     const nuevoNombre = nombreInput.value;
     const nuevoApellido = apellidoInput.value;
-    const nuevoCorreo = correoInput.value;
     const nuevoTelefono = telefonoInput.value;
     const nuevaCalle = calleInput.value;
     const nuevoNumExterior = numExteriorInput.value;
@@ -254,7 +252,6 @@ perfilUsuario.addEventListener('click', (e) => {
     updateUsuario(id, {
       nombre: nuevoNombre,
       apellido: nuevoApellido,
-      correo: nuevoCorreo,
       telefono: nuevoTelefono,
       calle: nuevaCalle,
       num_exterior: nuevoNumExterior,
