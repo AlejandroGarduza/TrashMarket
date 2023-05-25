@@ -40,11 +40,12 @@
 .container input[type="submit"]{
     width: 140px;
     height: 30px;
-    color: #fff;
     background-color: #0033CB;
-    border-radius: 15px;
+    color: #fff;
     border: none;
-    align-items: center;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
     margin-left: 30%;
     margin-right: 30px;
 }
@@ -52,10 +53,11 @@
 .container button{
     width: 140px;
     height: 30px;
-    color: #fff;
     background-color: #0033CB;
-    border-radius: 15px;
+    color: #fff;
     border: none;
-    align-items: center;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
     
 }
